@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sabores que Ficam — Catering em Lisboa</title>
+<meta name="description" content="Sabores que Ficam — catering e buffet para eventos privados e corporativos em Lisboa, pela Chef Macuta. Petiscos, kits para grupos, tábuas e doces.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Ctext y=%27.9em%27 font-size=%2790%27%3E%F0%9F%A5%98%3C/text%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --caramel:#c2935b;
+    --caramel-dark:#a97a45;
+    --ink:#161311;
+    --white:#ffffff;
+    --line: rgba(22,19,17,0.14);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Work Sans', sans-serif;
+    color:var(--ink);
+    background:var(--white);
+    line-height:1.55;
+  }
+  h1,h2,h3,.font-display{
+    font-family:'Fredoka', sans-serif;
+    font-weight:600;
+    line-height:1.05;
+  }
+  a{text-decoration:none; color:inherit;}
+  ul{list-style:none;}
+  img{max-width:100%; display:block;}
+  .container{width:100%; max-width:1180px; margin:0 auto; padding:0 24px;}
+  .row{display:flex;}
+
+  /* buttons — flat, hard offset shadow, no gradients */
+  .btn{
+    display:inline-flex; align-items:center; gap:10px;
+    padding:14px 26px;
+    font-family:'Work Sans', sans-serif;
+    font-weight:600;
+    font-size:0.92rem;
+    border:2px solid var(--ink);
+    border-radius:3px;
+    cursor:pointer;
+    transition:transform .15s ease, box-shadow .15s ease;
+    box-shadow:4px 4px 0 var(--ink);
+  }
+  .btn:hover{transform:translate(-2px,-2px); box-shadow:6px 6px 0 var(--ink);}
+  .btn:active{transform:translate(0,0); box-shadow:2px 2px 0 var(--ink);}
+  .btn-ink{background:var(--ink); color:var(--white); border-color:var(--ink);}
+  .btn-white{background:var(--white); color:var(--ink);}
+  .btn-caramel{background:var(--caramel); color:var(--ink); border-color:var(--ink);}
+  .btn-on-dark{box-shadow:4px 4px 0 var(--caramel); border-color:var(--white);}
+  .btn-on-dark:hover{box-shadow:6px 6px 0 var(--caramel);}
+
+  .eyebrow{
+    font-family:'Work Sans', sans-serif;
+    text-transform:uppercase; letter-spacing:2.5px;
+    font-size:0.75rem; font-weight:600;
+  }
+  .rule{height:2px; background:var(--ink); width:56px;}
+
+  section{padding:96px 0;}
+  .bg-caramel{background:var(--caramel);}
+  .bg-ink{background:var(--ink); color:var(--white);}
+  .bg-ink .rule{background:var(--white);}
+
+  /* ===== marquee strip ===== */
+  .marquee{
+    background:var(--ink); color:var(--white);
+    overflow:hidden; white-space:nowrap;
+    padding:14px 0;
+    border-top:2px solid var(--ink); border-bottom:2px solid var(--ink);
+  }
+  .marquee span{
+    display:inline-block;
+    font-family:'Fredoka', sans-serif;
+    font-size:1rem; letter-spacing:1px;
+    padding-right:36px;
+    animation:scroll 26s linear infinite;
+  }
+  @keyframes scroll{ from{transform:translateX(0);} to{transform:translateX(-50%);} }
+
+  /* ===== header ===== */
+  header{
+    position:sticky; top:0; z-index:1000;
+    background:var(--white);
+    border-bottom:2px solid var(--ink);
+  }
+  header .container{
+    display:flex; align-items:center; justify-content:space-between;
+    padding-top:14px; padding-bottom:14px;
+  }
+  .brand img{height:48px; width:auto;}
+  nav.desktop-nav{display:flex; gap:32px; align-items:center;}
+  nav.desktop-nav a{font-weight:600; font-size:0.92rem; position:relative;}
+  nav.desktop-nav a::after{
+    content:''; position:absolute; left:0; right:0; bottom:-4px; height:2px;
+    background:var(--caramel); transform:scaleX(0); transition:transform .2s ease;
+  }
+  nav.desktop-nav a:hover::after{transform:scaleX(1);}
+  .header-actions{display:flex; align-items:center; gap:16px;}
+  .menu-toggle{display:none; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer;}
+  .menu-toggle span{width:24px; height:2px; background:var(--ink);}
+
+  .mobile-nav{
+    position:fixed; top:0; right:-100%; width:80%; max-width:320px; height:100vh;
+    background:var(--white); border-left:2px solid var(--ink);
+    z-index:1100; transition:right .35s ease;
+    padding:28px; display:flex; flex-direction:column; gap:26px;
+  }
+  .mobile-nav.open{right:0;}
+  .mobile-nav a{font-family:'Fredoka'; font-size:1.2rem;}
+  .mobile-close{align-self:flex-end; background:none; border:none; font-size:1.6rem; cursor:pointer;}
+  .overlay{position:fixed; inset:0; background:rgba(22,19,17,0.4); z-index:1050; opacity:0; pointer-events:none; transition:opacity .3s ease;}
+  .overlay.show{opacity:1; pointer-events:auto;}
+
+  /* ===== hero ===== */
+  .hero{padding:0;}
+  .hero-grid{display:grid; grid-template-columns:1fr 1fr; min-height:88vh;}
+  .hero-text{
+    display:flex; flex-direction:column; justify-content:center;
+    padding:64px 56px;
+    background:var(--white);
+  }
+  .hero-text .eyebrow{color:var(--caramel-dark); margin-bottom:18px;}
+  .hero-text h1{font-size:clamp(2.4rem, 4.4vw, 3.6rem); margin-bottom:22px;}
+  .hero-text h1 span{color:var(--caramel-dark);}
+  .hero-text p{font-size:1.08rem; max-width:440px; margin-bottom:32px;}
+  .hero-actions{display:flex; gap:14px; flex-wrap:wrap; margin-bottom:36px;}
+  .hero-meta{display:flex; gap:30px; flex-wrap:wrap; border-top:2px solid var(--ink); padding-top:20px;}
+  .hero-meta div strong{display:block; font-family:'Fredoka'; font-size:1.3rem;}
+  .hero-meta div span{font-size:0.8rem; text-transform:uppercase; letter-spacing:1px;}
+  .hero-photo{position:relative; overflow:hidden; background:var(--caramel);}
+  .hero-photo img, .hero-photo video{width:100%; height:100%; object-fit:cover; display:block;}
+
+  /* ===== video showcase ===== */
+  .video-showcase{display:grid; grid-template-columns:1.1fr 0.9fr; gap:60px; align-items:center;}
+  .video-showcase-media{
+    aspect-ratio:9/16; max-width:340px; width:100%; margin:0 auto;
+    border:2px solid var(--ink); box-shadow:8px 8px 0 var(--caramel); overflow:hidden; background:var(--ink);
+  }
+  .video-showcase-media video{width:100%; height:100%; object-fit:cover; display:block;}
+
+  /* ===== sobre ===== */
+  .about-grid{display:grid; grid-template-columns:0.8fr 1.2fr; gap:60px; align-items:center;}
+  .about-photo{border:2px solid var(--ink); box-shadow:8px 8px 0 var(--caramel);}
+  .about-photo img{width:100%; display:block;}
+  .about-text h2{font-size:clamp(1.9rem,3vw,2.5rem); margin:16px 0 22px;}
+  .about-text p{margin-bottom:16px; max-width:520px;}
+  .bio-list{margin-top:24px; border-top:2px solid var(--ink);}
+  .bio-list li{
+    display:flex; align-items:baseline; gap:14px;
+    padding:14px 0; border-bottom:2px solid var(--ink);
+    font-weight:500;
+  }
+  .bio-list li .n{font-family:'Fredoka'; color:var(--caramel-dark); font-size:1.1rem; min-width:26px;}
+
+  /* ===== servicos ===== */
+  .services-list{border-top:2px solid var(--ink); margin-top:44px;}
+  .service-row{
+    display:grid; grid-template-columns:80px 1fr 1.4fr;
+    gap:24px; padding:26px 0; border-bottom:2px solid var(--ink);
+    align-items:baseline;
+  }
+  .service-row .idx{font-family:'Fredoka'; font-size:1.1rem; color:var(--caramel-dark); grid-area:idx;}
+  .service-row h3{font-size:1.3rem; grid-area:title;}
+  .service-row p{font-size:0.95rem; grid-area:desc;}
+
+  /* ===== menu / preços ===== */
+  .menu-intro{max-width:640px; margin-bottom:16px;}
+  .menu-columns{display:grid; grid-template-columns:1fr 1fr; gap:64px; margin-top:56px;}
+  .menu-cat{margin-bottom:52px;}
+  .menu-cat-head{
+    display:flex; justify-content:space-between; align-items:flex-end;
+    border-bottom:3px solid var(--ink); padding-bottom:10px; margin-bottom:14px;
+  }
+  .menu-cat-head h3{font-size:1.35rem;}
+  .menu-cat-head .note{font-size:0.78rem; text-transform:uppercase; letter-spacing:1px; color:var(--caramel-dark); font-weight:600;}
+  .menu-item{
+    display:flex; align-items:baseline; gap:8px;
+    padding:9px 0; border-bottom:1px solid var(--line);
+    font-size:0.96rem;
+  }
+  .menu-item .leader{flex:1; border-bottom:1.5px dotted rgba(22,19,17,0.35); transform:translateY(-4px); margin:0 2px;}
+  .menu-item .price{font-family:'Fredoka'; font-weight:600; white-space:nowrap;}
+  .menu-photo-break{
+    margin:40px 0; border:2px solid var(--ink); box-shadow:6px 6px 0 var(--caramel);
+    overflow:hidden;
+  }
+  .menu-photo-break img{width:100%; height:220px; object-fit:cover; display:block;}
+  .menu-note-box{
+    border:2px solid var(--ink); padding:26px 28px; margin-top:10px;
+    background:var(--white);
+  }
+  .menu-note-box strong{font-family:'Fredoka'; display:block; margin-bottom:6px; font-size:1.05rem;}
+
+  /* ===== galeria ===== */
+  .gallery-grid{
+    display:grid; grid-template-columns:repeat(4,1fr); grid-auto-rows:180px; gap:6px; margin-top:40px;
+  }
+  .gallery-grid .g-item{overflow:hidden; border:2px solid var(--ink);}
+  .gallery-grid .g-item:nth-child(1){grid-column:span 2; grid-row:span 2;}
+  .gallery-grid .g-item img{
+    width:100%; height:100%; object-fit:cover;
+    filter:grayscale(65%); transition:filter .35s ease, transform .5s ease;
+  }
+  .gallery-grid .g-item:hover img{filter:grayscale(0%); transform:scale(1.04);}
+
+  /* ===== steps ===== */
+  .steps{display:grid; grid-template-columns:repeat(3,1fr); gap:0; border-top:2px solid var(--white); margin-top:50px;}
+  .step{padding:30px 26px 0; border-right:2px solid var(--white);}
+  .step:last-child{border-right:none;}
+  .step .num{font-family:'Fredoka'; font-size:2.2rem; color:var(--caramel);}
+  .step h3{margin:10px 0 8px; font-size:1.15rem;}
+  .step p{font-size:0.92rem; opacity:0.85;}
+
+  /* ===== social proof ===== */
+  .proof{
+    border:2px solid var(--ink); padding:48px; text-align:center; max-width:680px; margin:0 auto;
+  }
+  .proof .stars{letter-spacing:6px; font-size:1.2rem; margin-bottom:16px;}
+  .proof p.msg{font-family:'Fredoka'; font-size:1.3rem; margin-bottom:10px;}
+
+  /* ===== faq ===== */
+  .faq-item{border-bottom:2px solid var(--ink);}
+  .faq-item .q{
+    display:flex; justify-content:space-between; align-items:center;
+    padding:22px 0; cursor:pointer; font-family:'Fredoka'; font-size:1.1rem;
+  }
+  .faq-item .plus{font-size:1.4rem; transition:transform .25s ease;}
+  .faq-item.open .plus{transform:rotate(45deg);}
+  .faq-item .a{max-height:0; overflow:hidden; transition:max-height .3s ease;}
+  .faq-item.open .a{max-height:200px; padding-bottom:20px;}
+
+  /* ===== cta final ===== */
+  .cta-final{text-align:center;}
+  .cta-final h2{font-size:clamp(2rem,4vw,3rem); margin-bottom:18px;}
+  .cta-final p{max-width:480px; margin:0 auto 32px; opacity:0.85;}
+  .cta-buttons{display:flex; gap:16px; justify-content:center; flex-wrap:wrap;}
+
+  /* ===== footer ===== */
+  footer{background:var(--white); border-top:2px solid var(--ink); padding:60px 0 26px;}
+  .footer-grid{display:grid; grid-template-columns:1.4fr 1fr 1fr; gap:40px; margin-bottom:50px;}
+  .footer-brand img{height:44px; margin-bottom:14px;}
+  .footer-brand p{max-width:280px; font-size:0.92rem;}
+  footer h4{font-family:'Fredoka'; font-size:0.85rem; letter-spacing:1px; text-transform:uppercase; margin-bottom:16px; color:var(--caramel-dark);}
+  footer ul li{margin-bottom:10px; font-size:0.94rem;}
+  .footer-bottom{border-top:2px solid var(--ink); padding-top:22px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; font-size:0.82rem;}
+
+  /* ===== whatsapp float ===== */
+  .wa-float{
+    position:fixed; bottom:24px; right:24px; z-index:900;
+    width:58px; height:58px; border-radius:50%;
+    background:#1f9e52; display:flex; align-items:center; justify-content:center;
+    border:2px solid var(--ink); box-shadow:4px 4px 0 var(--ink);
+    transition:transform .15s ease;
+  }
+  .wa-float:hover{transform:translate(-2px,-2px);}
+  .wa-float svg{width:26px; height:26px; fill:#fff;}
+
+  @media (max-width: 980px){
+    .hero-grid{grid-template-columns:1fr;}
+    .hero-photo{height:340px; order:-1;}
+    .hero-text{padding:48px 28px;}
+    .about-grid{grid-template-columns:1fr;}
+    .video-showcase{grid-template-columns:1fr; text-align:center;}
+    .video-showcase-text p{margin-left:auto; margin-right:auto;}
+    .video-showcase-media{order:-1; max-width:280px;}
+    .menu-columns{grid-template-columns:1fr;}
+    .service-row{grid-template-columns:50px 1fr; grid-template-areas:"idx title" "idx desc"; row-gap:8px;}
+    .steps{grid-template-columns:1fr; }
+    .step{border-right:none; border-bottom:2px solid var(--white); padding-bottom:26px; margin-bottom:10px;}
+    .gallery-grid{grid-template-columns:repeat(2,1fr);}
+    .gallery-grid .g-item:nth-child(1){grid-column:span 2;}
+    .footer-grid{grid-template-columns:1fr 1fr;}
+    nav.desktop-nav, .header-actions .btn{display:none;}
+    .menu-toggle{display:flex;}
+  }
+  @media (max-width: 600px){
+    section{padding:64px 0;}
+    .footer-grid{grid-template-columns:1fr;}
+    .about-photo{box-shadow:5px 5px 0 var(--caramel);}
+  }
+</style>
+</head>
+<body>
+<header id="site-header">
+  <div class="container">
+    <a href="#top" class="brand"><img src="images/sabores-logo.png" alt="Sabores que Ficam"></a>
+    <nav class="desktop-nav">
+      <a href="#sobre">Sobre</a>
+      <a href="#servicos">Serviços</a>
+      <a href="#menu">Menu &amp; Preços</a>
+      <a href="#galeria">Galeria</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <div class="header-actions">
+      <a href="#" class="btn btn-ink wa-link">Pedir Orçamento</a>
+    </div>
+    <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<div class="overlay" id="overlay"></div>
+<div class="mobile-nav" id="mobileNav">
+  <button class="mobile-close" id="mobileClose">&times;</button>
+  <a href="#sobre">Sobre</a>
+  <a href="#servicos">Serviços</a>
+  <a href="#menu">Menu &amp; Preços</a>
+  <a href="#galeria">Galeria</a>
+  <a href="#faq">FAQ</a>
+  <a href="#" class="wa-link">Pedir Orçamento</a>
+</div>
+
+<section class="hero" id="top">
+  <div class="hero-grid">
+    <div class="hero-text">
+      <span class="eyebrow">Catering &amp; Buffet · Lisboa</span>
+      <h1>Sabores que ficam <span>na memória.</span></h1>
+      <p>Petiscos, kits para grupos, tábuas e doces feitos pela Chef Macuta — para casamentos, eventos corporativos, aniversários e celebrações em família.</p>
+      <div class="hero-actions">
+        <a href="#" class="btn btn-ink wa-link">Pedir Orçamento</a>
+        <a href="#menu" class="btn btn-white">Ver Menu &amp; Preços</a>
+      </div>
+      <div class="hero-meta">
+        <div><strong>9 anos</strong><span>de experiência</span></div>
+        <div><strong>Lisboa</strong><span>&amp; arredores</span></div>
+        <div><strong>@saboresqueficam</strong><span>Instagram</span></div>
+      </div>
+    </div>
+    <div class="hero-photo">
+      <video autoplay muted loop playsinline poster="images/hero-tray.jpg" aria-label="Chef Macuta a preparar e a servir petiscos da Sabores que Ficam">
+        <source src="videos/hero-reel-mobile.mp4" media="(max-width: 640px)" type="video/mp4">
+        <source src="videos/hero-reel.mp4" type="video/mp4">
+      </video>
+    </div>
+  </div>
+</section>
+
+<div class="marquee">
+  <span>CATERING EM LISBOA &nbsp;·&nbsp; EVENTOS PRIVADOS &nbsp;·&nbsp; EVENTOS CORPORATIVOS &nbsp;·&nbsp; CASAMENTOS &nbsp;·&nbsp; ANIVERSÁRIOS &nbsp;·&nbsp; CATERING EM LISBOA &nbsp;·&nbsp; EVENTOS PRIVADOS &nbsp;·&nbsp; EVENTOS CORPORATIVOS &nbsp;·&nbsp; CASAMENTOS &nbsp;·&nbsp; ANIVERSÁRIOS &nbsp;·&nbsp; </span>
+</div>
+
+<section id="sobre">
+  <div class="container about-grid">
+    <div class="about-photo">
+      <img src="images/chef-portrait.jpg" alt="Chef Macuta, da Sabores que Ficam">
+    </div>
+    <div class="about-text">
+      <span class="eyebrow" style="color:var(--caramel-dark);">Sobre a chef</span>
+      <h2>Chef Macuta</h2>
+      <p>Nove anos de prática na cozinha portuguesa, dedicados a transformar eventos em memórias — um casamento, uma reunião de empresa, um aniversário em família. Cada detalhe do buffet é pensado a preceito.</p>
+      <ul class="bio-list">
+        <li><span class="n">01</span> 9 anos de prática na cozinha portuguesa</li>
+        <li><span class="n">02</span> Curso profissional de cake design</li>
+        <li><span class="n">03</span> Formação de salgados</li>
+        <li><span class="n">04</span> Cozinha e pastelaria — nível 4</li>
+      </ul>
+      <div style="margin-top:28px;">
+        <a href="https://www.instagram.com/saboresqueficam/" target="_blank" rel="noopener" class="btn btn-caramel">Ver no Instagram</a>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="servicos" class="bg-caramel">
+  <div class="container">
+    <span class="eyebrow">O que fazemos</span>
+    <h2 style="font-size:clamp(1.9rem,3.4vw,2.6rem); margin-top:14px;">Buffet para cada tipo de ocasião</h2>
+    <div class="services-list">
+      <div class="service-row">
+        <span class="idx">01</span>
+        <h3>Casamentos</h3>
+        <p>Petiscos, tábuas e cubas montadas ao gosto dos noivos, do cocktail ao jantar.</p>
+      </div>
+      <div class="service-row">
+        <span class="idx">02</span>
+        <h3>Eventos corporativos</h3>
+        <p>Coffee-breaks e almoços de equipa com pontualidade e apresentação cuidada.</p>
+      </div>
+      <div class="service-row">
+        <span class="idx">03</span>
+        <h3>Aniversários &amp; festas</h3>
+        <p>Kits de petiscos e doces por pessoa, com opções divertidas como os brigadeiros e mini burgers coloridos.</p>
+      </div>
+      <div class="service-row">
+        <span class="idx">04</span>
+        <h3>Batizados &amp; cerimónias</h3>
+        <p>Tábuas de frios, frutas e patês para momentos em família.</p>
+      </div>
+      <div class="service-row">
+        <span class="idx">05</span>
+        <h3>Encomendas individuais</h3>
+        <p>Salgados, canapés e doces vendidos à unidade para quem quer só o essencial.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="menu">
+  <div class="container">
+    <span class="eyebrow" style="color:var(--caramel-dark);">Ementa</span>
+    <h2 style="font-size:clamp(1.9rem,3.4vw,2.6rem); margin-top:14px;">Menu &amp; Preços</h2>
+    <p class="menu-intro" style="margin-top:14px;">Preços de referência da Chef Macuta. Para eventos maiores ou menus à medida, fale connosco pelo WhatsApp.</p>
+
+    <div class="menu-columns">
+      <div>
+        <div class="menu-cat">
+          <div class="menu-cat-head"><h3>Kit de Petiscos</h3><span class="note">Serve até 4 pessoas</span></div>
+          <div class="menu-item"><span>1 cx de gambás a guilho</span></div>
+          <div class="menu-item"><span>1 cx de amêijoa à bulhão pato</span></div>
+          <div class="menu-item"><span>1 cx de pica-pau</span></div>
+          <div class="menu-item"><span>1 cx de ovos rotos</span></div>
+          <div class="menu-item"><span>Mandioca frita, banana frita, molho verde</span></div>
+          <div class="menu-item" style="border-bottom:none; padding-top:14px;"><span class="leader"></span><span class="price">65€</span></div>
+        </div>
+
+        <div class="menu-photo-break"><img src="images/food-fish.jpg" alt="Prato principal da Chef Macuta"></div>
+
+        <div class="menu-cat">
+          <div class="menu-cat-head"><h3>Kit Degustação</h3><span class="note">40€</span></div>
+          <div class="menu-item"><span>Mini pizzas</span><span class="leader"></span><span class="price">4 unid.</span></div>
+          <div class="menu-item"><span>Salgados fritos</span><span class="leader"></span><span class="price">20 unid.</span></div>
+          <div class="menu-item"><span>Mini hambúrguer</span><span class="leader"></span><span class="price">4 unid.</span></div>
+          <div class="menu-item"><span>Mini cachorro</span><span class="leader"></span><span class="price">4 unid.</span></div>
+          <div class="menu-item"><span>Brigadeiro tradicional</span><span class="leader"></span><span class="price">4 unid.</span></div>
+          <div class="menu-item"><span>Donetes coco</span><span class="leader"></span><span class="price">4 unid.</span></div>
+        </div>
+
+        <div class="menu-cat">
+          <div class="menu-cat-head"><h3>Pratos Principais</h3><span class="note">Cubas para 15/20 pessoas</span></div>
+          <div class="menu-item"><span>Cuba de bacalhau com natas</span><span class="leader"></span><span class="price">165€</span></div>
+          <div class="menu-item"><span>Cuba de cachupa</span><span class="leader"></span><span class="price">145€</span></div>
+          <div class="menu-item"><span>Cuba de arroz de pato</span><span class="leader"></span><span class="price">155€</span></div>
+          <div class="menu-item"><span>Cuba de carne de porco à alentejana</span><span class="leader"></span><span class="price">135€</span></div>
+          <div class="menu-item"><span>Cuba de lombo assado com batata a padeiro</span><span class="leader"></span><span class="price">125€</span></div>
+        </div>
+
+        <div class="menu-photo-break"><img src="images/food-charcuterie.jpg" alt="Tábua de frios da Sabores que Ficam"></div>
+
+        <div class="menu-cat">
+          <div class="menu-cat-head"><h3>Tábuas</h3></div>
+          <div class="menu-item"><span>Frutas frescas</span><span class="leader"></span><span class="price">45€</span></div>
+          <div class="menu-item"><span>Patês</span><span class="leader"></span><span class="price">35€</span></div>
+          <div class="menu-item"><span>Frios</span><span class="leader"></span><span class="price">65€</span></div>
+        </div>
+      </div>
+      <div>
+        <div class="menu-cat">
+          <div class="menu-cat-head"><h3>Kits para Grupos</h3></div>
+          <div class="menu-item" style="font-weight:600;"><span>Kit 30 pessoas</span><span class="leader"></span><span class="price">190€</span></div>
+          <div class="menu-item"><span>Salgados fritos (100), mini hambúrgueres, mini pizza e mini cachorros (20 cada)</span></div>
+          <div class="menu-item"><span>Brigadeiro tradicional (20), sobremesa miniatura (15), hot wings (20), bolo brigadeiro (1)</span></div>
+          <div class="menu-item" style="font-weight:600; margin-top:14px;"><span>Kit 50 pessoas</span><span class="leader"></span><span class="price">465€</span></div>
+          <div class="menu-item"><span>Tábua de frios, frutas e patês, 150 salgados, mini pizzas/hambúrgueres/cachorros (20 cada)</span></div>
+          <div class="menu-item"><span>Pudim, 30 brigadeiros, 30 sobremesas em copo, 20 donetes, bolo brigadeiro</span></div>
+          <div class="menu-item"><span>Canapés de camarão, asas de frango e mini quiches (20 cada)</span></div>
+        </div>
+
+        <div class="menu-photo-break"><img src="images/food-salgados.jpg" alt="Salgados variados da Sabores que Ficam"></div>
+
+        <div class="menu-cat">
+          <div class="menu-cat-head"><h3>Individuais</h3><span class="note">Por unidade</span></div>
+          <div class="menu-item"><span>Cachorro quente</span><span class="leader"></span><span class="price">1,40€</span></div>
+          <div class="menu-item"><span>Mini pizzas</span><span class="leader"></span><span class="price">0,85€</span></div>
+          <div class="menu-item"><span>Mini quiches</span><span class="leader"></span><span class="price">0,80€</span></div>
+          <div class="menu-item"><span>Mini hambúrgueres</span><span class="leader"></span><span class="price">1,60€</span></div>
+          <div class="menu-item"><span>Bruschettas</span><span class="leader"></span><span class="price">3,50€</span></div>
+          <div class="menu-item"><span>Canapés</span><span class="leader"></span><span class="price">1,30€</span></div>
+          <div class="menu-item"><span>Salgados fritos (50 unid.)</span><span class="leader"></span><span class="price">25€</span></div>
+          <div class="menu-item"><span>Salgados fritos (100 unid.)</span><span class="leader"></span><span class="price">43€</span></div>
+          <div class="menu-item"><span>Asas de frango c/ maionese e alho (20 un.)</span><span class="leader"></span><span class="price">25€</span></div>
+        </div>
+
+        <div class="menu-photo-break"><img src="images/food-brigadeiros.jpg" alt="Caixa de brigadeiros da Sabores que Ficam"></div>
+
+        <div class="menu-cat">
+          <div class="menu-cat-head"><h3>Brigadeiros</h3><span class="note">Vários sabores</span></div>
+          <div class="menu-item"><span>Tradicional, beijinho, churros, limão, maracujá, ninho com nutela, chocolate branco</span></div>
+          <div class="menu-item"><span>25 unidades</span><span class="leader"></span><span class="price">30€</span></div>
+          <div class="menu-item"><span>50 unidades</span><span class="leader"></span><span class="price">50€</span></div>
+          <div class="menu-item"><span>100 unidades</span><span class="leader"></span><span class="price">75€</span></div>
+        </div>
+
+        <div class="menu-photo-break"><img src="images/food-cake.jpg" alt="Bolo de brigadeiro da Sabores que Ficam"></div>
+
+        <div class="menu-cat">
+          <div class="menu-cat-head"><h3>Sobremesas</h3></div>
+          <div class="menu-item"><span>Pudim de natas</span><span class="leader"></span><span class="price">17€</span></div>
+          <div class="menu-item"><span>Mousse de chocolate</span><span class="leader"></span><span class="price">16€</span></div>
+          <div class="menu-item"><span>Arroz doce</span><span class="leader"></span><span class="price">14€</span></div>
+          <div class="menu-item"><span>Serradura</span><span class="leader"></span><span class="price">14€</span></div>
+          <div class="menu-item"><span>Mousse de manga</span><span class="leader"></span><span class="price">15€</span></div>
+          <div class="menu-item"><span>Panna cotta de frutos vermelhos</span><span class="leader"></span><span class="price">18€</span></div>
+        </div>
+
+        <div class="menu-cat">
+          <div class="menu-cat-head"><h3>Bolos</h3></div>
+          <div class="menu-item"><span>Brigadeiro</span><span class="leader"></span><span class="price">24€</span></div>
+          <div class="menu-item"><span>Limão</span><span class="leader"></span><span class="price">20€</span></div>
+          <div class="menu-item"><span>Banana caramelizada</span><span class="leader"></span><span class="price">20€</span></div>
+          <div class="menu-item"><span>Cenoura com chocolate</span><span class="leader"></span><span class="price">25€</span></div>
+          <div class="menu-item"><span>Brigadeiro branco com frutos silvestres</span><span class="leader"></span><span class="price">26€</span></div>
+        </div>
+
+        <div class="menu-note-box">
+          <strong>Menu à medida?</strong>
+          Restrições alimentares, temas de evento ou pedidos especiais — fale connosco e montamos uma proposta personalizada.
+          <div style="margin-top:16px;"><a href="#" class="btn btn-ink wa-link">Falar no WhatsApp</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="bg-ink">
+  <div class="container">
+    <span class="eyebrow" style="color:var(--caramel);">Processo</span>
+    <h2 style="font-size:clamp(1.9rem,3.4vw,2.6rem); margin-top:14px;">Como funciona</h2>
+    <div class="steps">
+      <div class="step">
+        <span class="num">01</span>
+        <h3>Contacto</h3>
+        <p>Fala connosco pelo WhatsApp ou Instagram e conta-nos sobre o seu evento.</p>
+      </div>
+      <div class="step">
+        <span class="num">02</span>
+        <h3>Proposta</h3>
+        <p>Montamos o menu e o orçamento certos para o número de convidados e o estilo do evento.</p>
+      </div>
+      <div class="step">
+        <span class="num">03</span>
+        <h3>O grande dia</h3>
+        <p>A equipa trata da montagem do buffet — é só receber os convidados.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="mesa-video">
+  <div class="container video-showcase">
+    <div class="video-showcase-text">
+      <span class="eyebrow" style="color:var(--caramel-dark);">Em movimento</span>
+      <h2 style="font-size:clamp(1.9rem,3.4vw,2.6rem); margin-top:14px;">Uma mesa a ganhar vida</h2>
+      <p style="margin-top:16px; max-width:440px;">Um relance real de uma mesa montada pela Chef Macuta — dos petiscos às sobremesas, tudo com o mesmo cuidado no detalhe.</p>
+    </div>
+    <div class="video-showcase-media">
+      <video autoplay muted loop playsinline poster="images/buffet-poster.jpg" aria-label="Mesa de buffet montada pela Sabores que Ficam">
+        <source src="videos/buffet-reel-mobile.mp4" media="(max-width: 640px)" type="video/mp4">
+        <source src="videos/buffet-reel.mp4" type="video/mp4">
+      </video>
+    </div>
+  </div>
+</section>
+
+<section id="galeria">
+  <div class="container">
+    <span class="eyebrow" style="color:var(--caramel-dark);">Galeria</span>
+    <h2 style="font-size:clamp(1.9rem,3.4vw,2.6rem); margin-top:14px;">Momentos que ficam</h2>
+    <div class="gallery-grid">
+      <div class="g-item"><img src="images/hero-tray.jpg" alt="Chef Macuta a servir petiscos"></div>
+      <div class="g-item"><img src="images/chef-tray.jpg" alt="Chef Macuta a servir mini burgers"></div>
+      <div class="g-item"><img src="images/gallery-prosciutto-1.jpg" alt="Petiscos de melão com presunto"></div>
+      <div class="g-item"><img src="images/gallery-prosciutto-2.jpg" alt="Petiscos de melão, presunto e doce"></div>
+      <div class="g-item"><img src="images/gallery-blue-sliders.jpg" alt="Mini burgers temáticos coloridos"></div>
+      <div class="g-item"><img src="images/food-charcuterie.jpg" alt="Tábua de frios"></div>
+      <div class="g-item"><img src="images/food-fish.jpg" alt="Prato principal de peixe"></div>
+      <div class="g-item"><img src="images/food-salgados.jpg" alt="Salgados fritos variados"></div>
+      <div class="g-item"><img src="images/food-cake.jpg" alt="Bolo brigadeiro"></div>
+    </div>
+    <div style="text-align:center; margin-top:40px;">
+      <a href="https://www.instagram.com/saboresqueficam/" target="_blank" rel="noopener" class="btn btn-caramel">Seguir @saboresqueficam</a>
+    </div>
+  </div>
+</section>
+
+<section class="bg-caramel">
+  <div class="container">
+    <div class="proof">
+      <div class="stars">★★★★★</div>
+      <p class="msg">Os feedbacks reais dos clientes estão sempre em destaque no Instagram.</p>
+      <p style="font-size:0.9rem; margin-bottom:20px;">Veja os depoimentos no destaque "Feedback" do perfil @saboresqueficam.</p>
+      <a href="https://www.instagram.com/saboresqueficam/" target="_blank" rel="noopener" class="btn btn-ink">Ver Feedbacks</a>
+    </div>
+  </div>
+</section>
+<section id="faq">
+  <div class="container" style="max-width:740px;">
+    <span class="eyebrow" style="color:var(--caramel-dark);">Perguntas frequentes</span>
+    <h2 style="font-size:clamp(1.9rem,3.4vw,2.6rem); margin-top:14px;">FAQ</h2>
+    <div style="margin-top:36px; border-top:2px solid var(--ink);">
+      <div class="faq-item">
+        <div class="q"><span>Que zonas atendem?</span><span class="plus">+</span></div>
+        <div class="a"><p>Lisboa e arredores. Para outras localizações, fale connosco para confirmar disponibilidade.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="q"><span>Com quanto tempo devo reservar?</span><span class="plus">+</span></div>
+        <div class="a"><p>Quanto antes, principalmente em datas de maior procura — fins de semana e época de casamentos.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="q"><span>Fazem menus para restrições alimentares?</span><span class="plus">+</span></div>
+        <div class="a"><p>Sim — vegetariano, sem glúten, sem lactose e outras necessidades são combinados na proposta.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="q"><span>Os preços do site já são finais?</span><span class="plus">+</span></div>
+        <div class="a"><p>São os preços de referência dos kits e itens individuais. Para eventos maiores ou personalizados, montamos um orçamento à parte.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contacto" class="bg-ink">
+  <div class="container cta-final">
+    <span class="eyebrow" style="color:var(--caramel);">Vamos falar sobre o seu evento?</span>
+    <h2 style="margin-top:16px;">Peça já o seu orçamento</h2>
+    <p>Conte-nos a data, o número de convidados e o que precisa — respondemos rapidamente pelo WhatsApp.</p>
+    <div class="cta-buttons">
+      <a href="#" class="btn btn-caramel wa-link">Falar no WhatsApp</a>
+      <a href="https://www.instagram.com/saboresqueficam/" target="_blank" rel="noopener" class="btn btn-white btn-on-dark">Instagram</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="images/sabores-logo.png" alt="Sabores que Ficam">
+        <p>Catering e buffet para eventos privados e corporativos em Lisboa, pela Chef Macuta.</p>
+      </div>
+      <div>
+        <h4>Navegação</h4>
+        <ul>
+          <li><a href="#sobre">Sobre</a></li>
+          <li><a href="#servicos">Serviços</a></li>
+          <li><a href="#menu">Menu &amp; Preços</a></li>
+          <li><a href="#galeria">Galeria</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contacto</h4>
+        <ul>
+          <li><a href="#" class="wa-link">WhatsApp</a></li>
+          <li><a href="https://www.instagram.com/saboresqueficam/" target="_blank" rel="noopener">Instagram</a></li>
+          <li>Lisboa, Portugal</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; <span id="year"></span> Sabores que Ficam. Todos os direitos reservados.</span>
+    </div>
+  </div>
+</footer>
+
+<a href="#" class="wa-float wa-link" aria-label="Falar no WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.36 5.07L2 22l5.07-1.33A9.94 9.94 0 0 0 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm0 18c-1.65 0-3.19-.46-4.5-1.26l-.32-.19-3.01.79.8-2.93-.21-.3A7.94 7.94 0 0 1 4 12c0-4.41 3.59-8 8-8s8 3.59 8 8-3.59 8-8 8zm4.4-5.6c-.24-.12-1.42-.7-1.64-.78-.22-.08-.38-.12-.54.12-.16.24-.62.78-.76.94-.14.16-.28.18-.52.06-.24-.12-1.02-.38-1.94-1.2-.72-.64-1.2-1.44-1.34-1.68-.14-.24-.02-.37.1-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.3-.74-1.78-.2-.47-.4-.4-.54-.41h-.46c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.32.98 2.48c.12.16 1.7 2.6 4.12 3.64.58.25 1.03.4 1.38.51.58.18 1.11.16 1.53.1.47-.07 1.42-.58 1.62-1.14.2-.56.2-1.04.14-1.14-.06-.1-.22-.16-.46-.28z"/></svg>
+</a>
+
+<script>
+  const WHATSAPP_NUMBER = "351900000000"; // TODO: substituir pelo número real (ex: 351912345678)
+  const WHATSAPP_MESSAGE = "Olá! Vim através do site da Sabores que Ficam e gostaria de pedir um orçamento para o meu evento.";
+  const waUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`;
+  document.querySelectorAll('.wa-link').forEach(el => el.setAttribute('href', waUrl));
+
+  const menuToggle = document.getElementById('menuToggle');
+  const mobileNav = document.getElementById('mobileNav');
+  const mobileClose = document.getElementById('mobileClose');
+  const overlay = document.getElementById('overlay');
+  function openNav(){ mobileNav.classList.add('open'); overlay.classList.add('show'); }
+  function closeNav(){ mobileNav.classList.remove('open'); overlay.classList.remove('show'); }
+  menuToggle.addEventListener('click', openNav);
+  mobileClose.addEventListener('click', closeNav);
+  overlay.addEventListener('click', closeNav);
+  mobileNav.querySelectorAll('a').forEach(a => a.addEventListener('click', closeNav));
+
+  document.querySelectorAll('.faq-item').forEach(item => {
+    item.querySelector('.q').addEventListener('click', () => {
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if(!isOpen) item.classList.add('open');
+    });
+  });
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
