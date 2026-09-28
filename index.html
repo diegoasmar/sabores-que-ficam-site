@@ -3,12 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Sabores que Ficam · Catering e buffet em Lisboa · Chef Macuta</title>
-<meta name="description" content="Catering e buffet para casamentos, batizados, aniversários e eventos de empresa em Lisboa e arredores. Petiscos, salgados, tábuas e doces da Chef Macuta.">
+<title>Sabores que Ficam | Catering e buffet em Lisboa</title>
+<meta name="description" content="Catering e buffet da Chef Macuta para casamentos, batizados, aniversários e eventos de empresa em Lisboa e arredores. Petiscos, salgados, tábuas, pratos principais e doces.">
 <meta name="theme-color" content="#15120f">
-<meta property="og:title" content="Sabores que Ficam · Catering em Lisboa">
-<meta property="og:description" content="Petiscos, salgados, tábuas e doces da Chef Macuta para o seu evento.">
-<meta property="og:image" content="https://diegoasmar.github.io/sabores-que-ficam-site/hero-tray.jpg">
+<meta property="og:title" content="Sabores que Ficam | Catering em Lisboa">
+<meta property="og:description" content="Catering e buffet da Chef Macuta para eventos em Lisboa e arredores.">
+<meta property="og:url" content="https://www.saboresqueficam.pt/">
+<meta property="og:image" content="https://www.saboresqueficam.pt/hero-tray.jpg">
 <link rel="icon" type="image/png" href="sabores-logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,7 +19,7 @@
   --paper:#ffffff;
   --ink:#15120f;
   --caramel:#c2935b;
-  --muted:rgba(21,18,15,.64);
+  --muted:rgba(21,18,15,.66);
   --hair:rgba(21,18,15,.16);
   --pad:clamp(20px,4vw,56px);
   --display:'Libre Caslon Display',Georgia,'Times New Roman',serif;
@@ -33,19 +34,19 @@ a{color:inherit}
 ul{list-style:none}
 section{scroll-margin-top:57px}
 .wrap{max-width:1320px;margin:0 auto;padding:0 var(--pad)}
-h1,h2,h3{font-family:var(--display);font-weight:400;letter-spacing:-.012em}
-h1 em,h2 em,.lede em{font-family:var(--serif);font-style:italic}
-.label{font-family:var(--sans);font-size:.7rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase}
+h1,h2,h3{font-family:var(--display);font-weight:400;letter-spacing:-.01em}
+.label{font-family:var(--sans);font-size:.7rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase}
 
 /* buttons & links */
-.btn{display:inline-flex;align-items:center;justify-content:center;font-family:var(--sans);font-size:.72rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;text-decoration:none;padding:1.2em 1.9em;border:1px solid currentColor;background:transparent;color:inherit;cursor:pointer;transition:background .25s,color .25s,border-color .25s}
+.btn{display:inline-flex;align-items:center;justify-content:center;font-family:var(--sans);font-size:.72rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;padding:1.2em 1.9em;border:1px solid currentColor;background:transparent;color:inherit;cursor:pointer;transition:background .25s,color .25s,border-color .25s}
 .btn-ink{background:var(--ink);border-color:var(--ink);color:var(--paper)}
 .btn-ink:hover{background:var(--caramel);border-color:var(--caramel);color:var(--ink)}
 .btn-paper{background:var(--paper);border-color:var(--paper);color:var(--ink)}
 .btn-paper:hover{background:var(--caramel);border-color:var(--caramel)}
 .btn-caramel{background:var(--caramel);border-color:var(--caramel);color:var(--ink)}
 .btn-caramel:hover{background:var(--paper);border-color:var(--paper)}
-.tlink{font-family:var(--sans);font-size:.72rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;text-decoration:none;padding-bottom:4px;border-bottom:1px solid currentColor;transition:opacity .2s}
+.btn[disabled]{opacity:.6;cursor:wait}
+.tlink{font-family:var(--sans);font-size:.72rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;padding-bottom:4px;border-bottom:1px solid currentColor;transition:opacity .2s}
 .tlink:hover{opacity:.6}
 
 /* header */
@@ -57,22 +58,21 @@ h1 em,h2 em,.lede em{font-family:var(--serif);font-style:italic}
 .site-header.solid .brand img{height:46px}
 .nav{display:flex;align-items:center;gap:clamp(20px,2.6vw,38px);height:90px;transition:height .35s}
 .site-header.solid .nav{height:58px}
-.nav a.nl{font-family:var(--sans);font-size:.7rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;padding:4px 0;border-bottom:1px solid transparent;transition:border-color .2s}
+.nav a.nl{font-family:var(--sans);font-size:.7rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;padding:4px 0;border-bottom:1px solid transparent;transition:border-color .2s}
 .nav a.nl:hover{border-bottom-color:currentColor}
 .nav .btn{padding:1em 1.4em}
 .site-header.solid .nav .btn{background:var(--ink);border-color:var(--ink);color:var(--paper)}
 .site-header.solid .nav .btn:hover{background:var(--caramel);border-color:var(--caramel);color:var(--ink)}
-.menu-btn{display:none;background:none;border:0;color:inherit;font-family:var(--sans);font-size:.72rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;height:64px;padding:0 2px}
+.menu-btn{display:none;background:none;border:0;color:inherit;font-family:var(--sans);font-size:.72rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;height:64px;padding:0 2px}
 
 /* mobile menu */
-.panel{position:fixed;inset:0;z-index:60;background:var(--caramel);color:var(--ink);display:flex;flex-direction:column;padding:22px var(--pad) calc(28px + env(safe-area-inset-bottom));transform:translateY(-100%);visibility:hidden;transition:transform .55s cubic-bezier(.7,0,.2,1),visibility 0s .55s}
-.panel.open{transform:none;visibility:visible;transition:transform .55s cubic-bezier(.7,0,.2,1),visibility 0s}
+.panel{position:fixed;inset:0;z-index:60;background:var(--caramel);color:var(--ink);display:flex;flex-direction:column;padding:22px var(--pad) calc(28px + env(safe-area-inset-bottom));transform:translateY(-100%);visibility:hidden;transition:transform .5s ease,visibility 0s .5s}
+.panel.open{transform:none;visibility:visible;transition:transform .5s ease,visibility 0s}
 .panel-top{display:flex;justify-content:space-between;align-items:center}
 .panel-top img{height:52px;width:auto}
 .panel nav{margin-top:auto;margin-bottom:auto;padding:40px 0}
-.panel nav a{display:block;font-family:var(--display);font-size:clamp(2.5rem,11vw,3.6rem);line-height:1.12;text-decoration:none}
-.panel nav a:nth-child(even){font-family:var(--serif);font-style:italic}
-.panel-foot{display:flex;justify-content:space-between;gap:16px;border-top:1px solid rgba(21,18,15,.3);padding-top:18px}
+.panel nav a{display:block;font-family:var(--display);font-size:clamp(2.3rem,10vw,3.4rem);line-height:1.15;text-decoration:none}
+.panel-foot{border-top:1px solid rgba(21,18,15,.3);padding-top:18px}
 
 /* hero */
 .hero{position:relative;height:100vh;height:100svh;min-height:580px;background:var(--ink);color:var(--paper);overflow:hidden}
@@ -81,13 +81,8 @@ h1 em,h2 em,.lede em{font-family:var(--serif);font-style:italic}
 .film.desk-only{display:none}
 .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(21,18,15,.78) 0%,rgba(21,18,15,.35) 42%,rgba(21,18,15,.12) 72%,rgba(21,18,15,.28) 100%);pointer-events:none}
 .hero-copy{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:0 var(--pad) calc(clamp(26px,6vh,64px) + env(safe-area-inset-bottom))}
-.hero h1{font-size:clamp(3.7rem,11.2vw,10.4rem);line-height:.86}
-.hero h1 .ln{display:block;overflow:hidden;padding-bottom:.16em;margin-bottom:-.16em}
-.hero h1 .ln>span{display:inline-block;transform:translateY(108%);animation:rise 1.15s cubic-bezier(.2,.75,.1,1) .15s forwards}
-.hero h1 .ln:nth-child(2)>span{animation-delay:.3s}
-@keyframes rise{to{transform:none}}
-.hero-sub{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:22px 40px;margin-top:clamp(20px,3.4vh,34px);padding-top:clamp(18px,2.6vh,24px);border-top:1px solid rgba(255,255,255,.34);opacity:0;animation:fade .9s ease .8s forwards}
-@keyframes fade{to{opacity:1}}
+.hero h1{font-size:clamp(3.5rem,10.6vw,9.8rem);line-height:.9}
+.hero-sub{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:22px 40px;margin-top:clamp(20px,3.4vh,34px);padding-top:clamp(18px,2.6vh,24px);border-top:1px solid rgba(255,255,255,.34)}
 .hero-sub p{font-size:clamp(1.02rem,1.5vw,1.25rem);line-height:1.45;max-width:34ch}
 .hero-actions{display:flex;align-items:center;gap:26px;flex-wrap:wrap}
 
@@ -95,47 +90,40 @@ h1 em,h2 em,.lede em{font-family:var(--serif);font-style:italic}
 .intro{padding:clamp(84px,12vw,176px) 0 clamp(72px,10vw,150px)}
 .grid12{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:clamp(16px,2.6vw,40px)}
 .intro-main{grid-column:1/span 7}
-.lede{font-family:var(--display);font-size:clamp(1.7rem,3.05vw,2.8rem);line-height:1.2}
+.lede{font-family:var(--display);font-size:clamp(1.6rem,2.8vw,2.55rem);line-height:1.22}
 .intro-main .body{margin-top:clamp(28px,3.5vw,44px);max-width:46ch;color:var(--muted)}
 .intro-main .tlink{display:inline-block;margin-top:30px}
 .chef{grid-column:9/span 4;margin-top:clamp(40px,10vw,170px)}
-.chef .frame{overflow:hidden;background:var(--caramel)}
-.chef img{width:100%;aspect-ratio:477/700;object-fit:cover}
+.chef img{width:100%;aspect-ratio:477/700;object-fit:cover;background:var(--caramel)}
 .chef figcaption{margin-top:14px;font-size:.95rem;line-height:1.5;color:var(--muted)}
 .chef figcaption strong{color:var(--ink);font-weight:700}
 
 /* occasions */
 .occasions{background:var(--caramel);padding:clamp(60px,8vw,120px) 0}
-.occ{display:flex;flex-wrap:wrap;align-items:baseline;column-gap:.42em;font-family:var(--display);font-size:clamp(2.3rem,6.4vw,5.9rem);line-height:1.04}
-.occ li:nth-child(even){font-family:var(--serif);font-style:italic}
-.occ li:not(:last-child)::after{content:"/";font-family:var(--display);font-style:normal;margin-left:.42em;opacity:.32}
+.occ{font-family:var(--display);font-size:clamp(2rem,5vw,4.4rem);line-height:1.1;max-width:22ch}
 .occ-note{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:20px 40px;margin-top:clamp(34px,5vw,60px);padding-top:22px;border-top:1px solid rgba(21,18,15,.3)}
 .occ-note p{max-width:52ch}
 
-/* menu */
+/* services */
 .menu{padding:clamp(84px,11vw,164px) 0 clamp(80px,10vw,140px)}
 .menu-head{align-items:end;margin-bottom:clamp(40px,6vw,76px)}
-.menu-head h2{grid-column:1/span 6;font-size:clamp(3.4rem,9vw,8rem);line-height:.86}
-.menu-head p{grid-column:8/span 5;color:var(--muted);max-width:40ch}
+.menu-head h2{grid-column:1/span 6;font-size:clamp(3.2rem,8.4vw,7.4rem);line-height:.9}
+.menu-head p{grid-column:8/span 5;color:var(--muted);max-width:42ch}
 .kits{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--ink);border-bottom:1px solid var(--ink)}
 .kit{padding:28px clamp(16px,2vw,28px) 32px;border-left:1px solid var(--hair)}
 .kit:first-child{border-left:0;padding-left:0}
 .kit:last-child{padding-right:0}
-.kit h3{font-size:1.55rem;line-height:1.1;margin-top:10px}
-.kit .price{font-family:var(--display);font-size:clamp(2.7rem,4.2vw,3.7rem);line-height:1;margin-top:14px}
-.kit ul{margin-top:18px;font-size:.93rem;line-height:1.45;color:var(--muted)}
-.kit li+li{margin-top:5px}
+.kit h3{font-size:1.6rem;line-height:1.1}
+.kit .meta{margin-top:6px;font-size:.93rem;color:var(--muted)}
+.kit ul{margin-top:18px;font-size:.95rem;line-height:1.45}
+.kit li{padding:7px 0;border-top:1px solid var(--hair)}
 .carta{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:clamp(32px,5vw,72px);margin-top:clamp(56px,7vw,96px)}
 .grp+.grp{margin-top:46px}
-.grp h3{display:flex;justify-content:space-between;align-items:baseline;gap:12px;font-family:var(--sans);font-size:.7rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;padding-bottom:12px;border-bottom:1px solid var(--ink);margin-bottom:4px}
-.grp h3 small{font-family:var(--serif);font-style:italic;font-weight:400;font-size:.88rem;letter-spacing:0;text-transform:none;color:var(--muted)}
-.grp .sub{font-style:italic;font-size:.92rem;color:var(--muted);padding:10px 0 2px}
-.it{display:flex;align-items:baseline;gap:10px;padding:9px 0;line-height:1.35}
-.it .d{flex:1;min-width:14px;border-bottom:1px dotted rgba(21,18,15,.42);transform:translateY(-5px)}
-.it .p{font-family:var(--display);font-size:1.14rem;white-space:nowrap}
+.grp h3{font-size:1.45rem;line-height:1.15;padding-bottom:12px;border-bottom:1px solid var(--ink)}
+.grp .sub{font-size:.93rem;color:var(--muted);padding:10px 0 2px}
+.items li{padding:9px 0;border-bottom:1px solid var(--hair);line-height:1.35}
 .custom{margin-top:46px;padding:26px 0 0;border-top:1px solid var(--ink)}
-.custom p{font-family:var(--display);font-size:1.5rem;line-height:1.25}
-.custom p em{font-family:var(--serif);font-style:italic}
+.custom p{font-family:var(--display);font-size:1.45rem;line-height:1.25}
 .custom .tlink{display:inline-block;margin-top:18px}
 
 /* gallery */
@@ -149,7 +137,7 @@ h1 em,h2 em,.lede em{font-family:var(--serif);font-style:italic}
 .shot{flex:none}
 .shot button{display:block;border:0;padding:0;background:none;cursor:inherit}
 .shot img{height:clamp(290px,34vw,460px);width:auto;aspect-ratio:var(--ar);object-fit:cover;object-position:var(--pos,50% 50%);user-select:none;-webkit-user-drag:none;pointer-events:none}
-.shot figcaption{margin-top:12px;font-style:italic;font-size:.92rem;color:rgba(255,255,255,.66)}
+.shot figcaption{margin-top:12px;font-size:.92rem;color:rgba(255,255,255,.66)}
 .gallery-foot{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:16px 40px;margin-top:clamp(36px,4vw,54px)}
 .gallery-foot p{max-width:56ch;color:rgba(255,255,255,.72)}
 
@@ -157,13 +145,13 @@ h1 em,h2 em,.lede em{font-family:var(--serif);font-style:italic}
 .lb{position:fixed;inset:0;z-index:80;background:var(--ink);color:var(--paper);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:64px 16px 40px;opacity:0;visibility:hidden;transition:opacity .3s,visibility 0s .3s}
 .lb.open{opacity:1;visibility:visible;transition:opacity .3s,visibility 0s}
 .lb img{max-width:min(92vw,1000px);max-height:76vh;width:auto;height:auto;object-fit:contain}
-.lb p{margin-top:16px;font-style:italic;color:rgba(255,255,255,.72)}
+.lb p{margin-top:16px;color:rgba(255,255,255,.72)}
 .lb-close{position:absolute;top:18px;right:var(--pad);background:none;border:0;color:inherit;cursor:pointer}
 .lb-nav{position:absolute;top:50%;transform:translateY(-50%);background:none;border:0;color:inherit;font-family:var(--display);font-size:2.4rem;line-height:1;padding:12px;cursor:pointer;opacity:.7}
 .lb-nav:hover{opacity:1}
 .lb-prev{left:6px}.lb-next{right:6px}
 
-/* table / process */
+/* how it works */
 .table{padding:clamp(84px,11vw,164px) 0}
 .table .grid12{align-items:center}
 .table-film{grid-column:1/span 5;position:relative;background:var(--ink)}
@@ -171,14 +159,9 @@ h1 em,h2 em,.lede em{font-family:var(--serif);font-style:italic}
 .table-film .label{position:absolute;left:16px;bottom:14px;color:var(--paper)}
 .table-copy{grid-column:7/span 6}
 .table-copy h2{font-size:clamp(2.5rem,5.2vw,4.6rem);line-height:.98;margin-bottom:clamp(28px,4vw,44px)}
-.steps p{padding:20px 0 22px;border-top:1px solid var(--hair);color:var(--muted);max-width:48ch}
+.steps p{padding:20px 0 22px;border-top:1px solid var(--hair);max-width:48ch;font-size:1.1rem;line-height:1.5}
 .steps p:last-child{border-bottom:1px solid var(--hair)}
-.steps strong{display:block;font-family:var(--display);font-weight:400;font-size:1.45rem;line-height:1.2;color:var(--ink);margin-bottom:6px}
 .table-copy .btn{margin-top:34px}
-
-/* reveal (only two elements) */
-.unveil{clip-path:inset(0 0 100% 0);transition:clip-path 1.3s cubic-bezier(.2,.75,.1,1)}
-.unveil.in{clip-path:inset(0 0 0 0)}
 
 /* faq */
 .faq{padding:0 0 clamp(84px,11vw,150px)}
@@ -191,18 +174,18 @@ h1 em,h2 em,.lede em{font-family:var(--serif);font-style:italic}
 /* quote form */
 .quote{background:var(--ink);color:var(--paper);padding:clamp(84px,11vw,150px) 0 clamp(84px,10vw,140px)}
 .quote-intro{grid-column:1/span 5}
-.quote-intro h2{font-size:clamp(3.1rem,7.2vw,6.4rem);line-height:.9}
+.quote-intro h2{font-size:clamp(3rem,6.8vw,6rem);line-height:.92}
 .quote-intro>p{margin-top:28px;max-width:36ch;color:rgba(255,255,255,.74)}
 .direct{margin-top:44px;border-top:1px solid rgba(255,255,255,.2)}
-.direct a,.direct span{display:flex;justify-content:space-between;gap:16px;padding:17px 0;border-bottom:1px solid rgba(255,255,255,.2);text-decoration:none;font-family:var(--sans);font-size:.7rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase}
+.direct a,.direct span{display:flex;justify-content:space-between;gap:16px;padding:17px 0;border-bottom:1px solid rgba(255,255,255,.2);text-decoration:none;font-family:var(--sans);font-size:.7rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase}
 .direct a:hover{color:var(--caramel)}
 .direct i{font-style:normal;opacity:.55}
 .form{grid-column:7/span 6}
 .form fieldset{border:0;margin:0 0 30px;padding:0;min-width:0}
-.form legend{font-style:italic;font-size:1.05rem;color:var(--caramel);padding:0;margin-bottom:2px}
+.form legend{font-family:var(--display);font-size:1.3rem;color:var(--caramel);padding:0;margin-bottom:2px}
 .row{display:grid;grid-template-columns:1fr 1fr;column-gap:28px}
 .f{padding-top:22px;min-width:0}
-.f label{display:block;font-family:var(--sans);font-size:.66rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.72)}
+.f label{display:block;font-family:var(--sans);font-size:.66rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.72)}
 .f input,.f select,.f textarea{display:block;width:100%;background:transparent;border:0;border-bottom:1px solid rgba(255,255,255,.36);border-radius:0;color:var(--paper);font-family:var(--serif);font-size:1.12rem;line-height:1.4;padding:9px 0 11px;outline:0;-webkit-appearance:none;appearance:none;transition:border-color .2s}
 .f input::placeholder,.f textarea::placeholder{color:rgba(255,255,255,.34)}
 .f input:focus,.f select:focus,.f textarea:focus{border-bottom-color:var(--caramel)}
@@ -211,15 +194,16 @@ h1 em,h2 em,.lede em{font-family:var(--serif);font-style:italic}
 .f select option{color:var(--ink);background:var(--paper)}
 .f input[type=date]{color-scheme:dark;min-height:48px}
 .f textarea{resize:vertical;min-height:92px}
-.f .err{display:none;margin-top:7px;font-family:var(--sans);font-size:.64rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--caramel)}
+.f .err{display:none;margin-top:7px;font-family:var(--sans);font-size:.64rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--caramel)}
 .f.bad input,.f.bad select,.f.bad textarea{border-bottom-color:var(--caramel);border-bottom-width:2px}
 .f.bad .err{display:block}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
 .form-foot{display:flex;align-items:center;flex-wrap:wrap;gap:18px 28px;margin-top:6px}
-.form-foot p{font-size:.92rem;color:rgba(255,255,255,.6);max-width:36ch}
-.sent{display:none;margin-top:26px;padding:20px 0 0;border-top:1px solid rgba(255,255,255,.2)}
-.sent.show{display:block}
-.sent p{font-family:var(--display);font-size:1.5rem;line-height:1.25}
-.sent a{display:inline-block;margin-top:14px}
+.form-foot p{font-size:.9rem;color:rgba(255,255,255,.6);max-width:38ch}
+.status{display:none;margin-top:26px;padding:20px 0 0;border-top:1px solid rgba(255,255,255,.2)}
+.status.show{display:block}
+.status p{font-family:var(--display);font-size:1.45rem;line-height:1.3}
+.status small{display:block;margin-top:8px;font-size:.95rem;color:rgba(255,255,255,.7)}
 
 /* footer */
 .foot{background:var(--caramel);color:var(--ink);padding:clamp(48px,6vw,72px) 0 calc(26px + env(safe-area-inset-bottom))}
@@ -244,7 +228,7 @@ h1 em,h2 em,.lede em{font-family:var(--serif);font-style:italic}
   .kit:nth-child(2){padding-right:0}
   .kit:nth-child(n+3){border-top:1px solid var(--hair)}
   .carta{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .carta .col3{grid-column:1/-1;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:clamp(32px,5vw,72px)}
+  .carta .col3{grid-column:1/-1;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:clamp(32px,5vw,72px);margin-top:46px}
   .carta .col3 .grp+.grp{margin-top:0}
   .carta .col3 .custom{grid-column:1/-1}
 }
@@ -271,9 +255,9 @@ h1 em,h2 em,.lede em{font-family:var(--serif);font-style:italic}
   .faq dl{margin-top:30px}
   .quote-intro,.form{grid-column:1/-1}
   .form{margin-top:52px}
-  .qbar{display:block;position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom));z-index:40;transform:translateY(calc(100% + 30px));transition:transform .4s cubic-bezier(.2,.75,.1,1)}
+  .qbar{display:block;position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom));z-index:40;transform:translateY(calc(100% + 30px));transition:transform .35s ease}
   .qbar.show{transform:none}
-  .qbar a{display:flex;justify-content:center;align-items:center;height:54px;background:var(--ink);color:var(--paper);text-decoration:none;font-family:var(--sans);font-size:.72rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;box-shadow:0 0 0 1px rgba(255,255,255,.18)}
+  .qbar a{display:flex;justify-content:center;align-items:center;height:54px;background:var(--ink);color:var(--paper);text-decoration:none;font-family:var(--sans);font-size:.72rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;box-shadow:0 0 0 1px rgba(255,255,255,.18)}
   .foot-top img{height:80px}
   .foot{padding-bottom:calc(92px + env(safe-area-inset-bottom))}
 }
@@ -284,6 +268,7 @@ h1 em,h2 em,.lede em{font-family:var(--serif);font-style:italic}
   .kit+.kit{border-top:1px solid var(--hair)}
   .carta,.carta .col3{grid-template-columns:1fr}
   .carta .col3 .grp{margin-top:46px}
+  .carta .col3 .grp:first-child{margin-top:0}
   .grp+.grp{margin-top:40px}
   .faq dl{grid-template-columns:1fr;gap:28px}
   .row{grid-template-columns:1fr}
@@ -293,17 +278,15 @@ h1 em,h2 em,.lede em{font-family:var(--serif);font-style:italic}
 }
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
-  .hero h1 .ln>span,.hero-sub{animation:none;transform:none;opacity:1}
-  .unveil{clip-path:none;transition:none}
 }
 </style>
 </head>
 <body>
 
 <header class="site-header" id="header">
-  <a class="brand" href="#topo" aria-label="Sabores que Ficam — início"><img src="sabores-logo.png" alt="Sabores que Ficam"></a>
+  <a class="brand" href="#topo" aria-label="Início"><img src="sabores-logo.png" alt="Sabores que Ficam"></a>
   <nav class="nav" aria-label="Principal">
-    <a class="nl" href="#ementa">Ementa</a>
+    <a class="nl" href="#servicos">Serviços</a>
     <a class="nl" href="#galeria">Galeria</a>
     <a class="nl" href="#como-funciona">Como funciona</a>
     <a class="nl" href="#perguntas">Perguntas</a>
@@ -318,15 +301,14 @@ h1 em,h2 em,.lede em{font-family:var(--serif);font-style:italic}
     <button class="menu-btn" id="menuClose" style="display:block">Fechar</button>
   </div>
   <nav aria-label="Menu">
-    <a href="#ementa">Ementa</a>
+    <a href="#servicos">Serviços</a>
     <a href="#galeria">Galeria</a>
     <a href="#como-funciona">Como funciona</a>
     <a href="#perguntas">Perguntas</a>
     <a href="#orcamento">Pedir orçamento</a>
   </nav>
   <div class="panel-foot">
-    <a class="label" href="https://www.instagram.com/saboresqueficam/" target="_blank" rel="noopener">Instagram</a>
-    <a class="label wa" href="#">WhatsApp</a>
+    <a class="label" href="https://www.instagram.com/saboresqueficam/" target="_blank" rel="noopener">Instagram @saboresqueficam</a>
   </div>
 </div>
 
@@ -338,12 +320,12 @@ h1 em,h2 em,.lede em{font-family:var(--serif);font-style:italic}
     <video class="film desk-only" muted loop playsinline preload="none" poster="chef-tray.jpg" data-desk="hero-reel.mp4" data-start="17.4" aria-hidden="true"></video>
   </div>
   <div class="hero-copy">
-    <h1><span class="ln"><span>Sabores</span></span><span class="ln"><span><em>que ficam</em></span></span></h1>
+    <h1>Sabores<br>que Ficam</h1>
     <div class="hero-sub">
-      <p>Catering e buffet para casamentos, batizados, aniversários e empresas — pela Chef Macuta, em Lisboa.</p>
+      <p>Catering e buffet para eventos em Lisboa e arredores, pela Chef Macuta.</p>
       <div class="hero-actions">
         <a class="btn btn-paper" href="#orcamento">Pedir orçamento</a>
-        <a class="tlink" href="#ementa">Ver a ementa</a>
+        <a class="tlink" href="#servicos">Ver serviços</a>
       </div>
     </div>
   </div>
@@ -352,86 +334,75 @@ h1 em,h2 em,.lede em{font-family:var(--serif);font-style:italic}
 <section class="intro" id="sobre">
   <div class="wrap grid12">
     <div class="intro-main">
-      <p class="lede">Comida feita para ser partilhada. <em>Petiscos, salgados, tábuas e doces</em> para a sua festa, preparados e servidos pela Chef Macuta em Lisboa e arredores.</p>
-      <p class="body">Da tábua de frios ao bolo de brigadeiro, tudo é feito pela Chef e pela sua equipa e levado até ao local do evento. Pode escolher um dos kits da ementa ou pedir uma proposta à medida do número de convidados.</p>
-      <a class="tlink" href="#ementa">Ver kits e preços</a>
+      <p class="lede">A Sabores que Ficam é o serviço de catering da Chef Macuta. Preparamos petiscos, salgados, tábuas, pratos principais e doces para eventos em Lisboa e arredores.</p>
+      <p class="body">Tratamos de tudo, da cozinha à montagem da mesa no local. Pode escolher um dos nossos kits ou pedir um menu feito para o seu evento.</p>
+      <a class="tlink" href="#servicos">Ver serviços</a>
     </div>
     <figure class="chef">
-      <div class="frame unveil"><img src="chef-portrait.jpg" alt="A Chef Macuta, de avental caramelo, com uma tábua de frios junto a uma mesa de buffet" loading="lazy"></div>
-      <figcaption><strong>Chef Macuta.</strong> Nove anos de cozinha portuguesa, formação em cozinha e pastelaria (nível 4), cake design e salgados.</figcaption>
+      <img src="chef-portrait.jpg" alt="A Chef Macuta com uma tábua de frios junto a uma mesa de buffet" loading="lazy">
+      <figcaption><strong>Chef Macuta.</strong> Nove anos de cozinha portuguesa, formação em cozinha e pastelaria (nível 4), curso de cake design e formação em salgados.</figcaption>
     </figure>
   </div>
 </section>
 
 <section class="occasions" aria-label="Ocasiões">
   <div class="wrap">
-    <ul class="occ">
-      <li>Casamentos</li>
-      <li>batizados</li>
-      <li>Aniversários</li>
-      <li>empresas</li>
-      <li>Cerimónias</li>
-      <li>encomendas</li>
-    </ul>
+    <p class="occ">Casamentos, batizados, aniversários, eventos de empresa e encomendas.</p>
     <div class="occ-note">
-      <p>Buffet completo, só os petiscos ou só os doces. Ajustamos a mesa à ocasião, ao espaço e ao número de convidados.</p>
-      <a class="tlink" href="#orcamento">Contar-nos o seu evento</a>
+      <p>Buffet completo ou só uma parte, como os petiscos, os salgados ou os doces.</p>
+      <a class="tlink" href="#orcamento">Pedir orçamento</a>
     </div>
   </div>
 </section>
 
-<section class="menu" id="ementa">
+<section class="menu" id="servicos">
   <div class="wrap">
     <div class="grid12 menu-head">
-      <h2>Ementa</h2>
-      <p>Preços de referência da Chef Macuta. Para eventos maiores ou menus diferentes, fazemos uma proposta à medida.</p>
+      <h2>Serviços</h2>
+      <p>Trabalhamos por orçamento. O valor depende do número de pessoas, do tipo de evento e do que escolher.</p>
     </div>
 
     <div class="kits">
       <article class="kit">
-        <span class="label">Até 4 pessoas</span>
         <h3>Kit de Petiscos</h3>
-        <div class="price">65€</div>
+        <p class="meta">Para até 4 pessoas</p>
         <ul>
           <li>Gambas à guilho</li>
           <li>Amêijoas à Bulhão Pato</li>
           <li>Pica-pau</li>
           <li>Ovos rotos</li>
-          <li>Mandioca e banana fritas, molho verde</li>
+          <li>Mandioca e banana fritas com molho verde</li>
         </ul>
       </article>
       <article class="kit">
-        <span class="label">Salgados e doces</span>
         <h3>Kit Degustação</h3>
-        <div class="price">40€</div>
+        <p class="meta">Salgados e doces em tamanho mini</p>
         <ul>
           <li>20 salgados fritos</li>
-          <li>4 mini pizzas, 4 mini hambúrgueres, 4 mini cachorros</li>
+          <li>4 mini pizzas, 4 mini hambúrgueres e 4 mini cachorros</li>
           <li>4 brigadeiros tradicionais</li>
           <li>4 donetes de coco</li>
         </ul>
       </article>
       <article class="kit">
-        <span class="label">Salgados, doces e bolo</span>
         <h3>Kit 30 pessoas</h3>
-        <div class="price">190€</div>
+        <p class="meta">Salgados, doces e bolo</p>
         <ul>
           <li>100 salgados fritos</li>
-          <li>20 mini hambúrgueres, 20 mini pizzas, 20 mini cachorros</li>
+          <li>20 mini hambúrgueres, 20 mini pizzas e 20 mini cachorros</li>
           <li>20 hot wings</li>
-          <li>20 brigadeiros, 15 sobremesas miniatura</li>
-          <li>1 bolo de brigadeiro</li>
+          <li>20 brigadeiros e 15 sobremesas em miniatura</li>
+          <li>Bolo de brigadeiro</li>
         </ul>
       </article>
       <article class="kit">
-        <span class="label">Tábua, canapés e sobremesas</span>
         <h3>Kit 50 pessoas</h3>
-        <div class="price">465€</div>
+        <p class="meta">Com tábua, canapés e sobremesas</p>
         <ul>
           <li>Tábua de frios, frutas e patês</li>
           <li>150 salgados fritos</li>
-          <li>20 mini pizzas, 20 mini hambúrgueres, 20 mini cachorros</li>
-          <li>20 canapés de camarão, 20 asas de frango, 20 mini quiches</li>
+          <li>20 mini pizzas, 20 mini hambúrgueres e 20 mini cachorros</li>
+          <li>20 canapés de camarão, 20 asas de frango e 20 mini quiches</li>
           <li>Pudim, 30 brigadeiros, 30 sobremesas em copo, 20 donetes e bolo de brigadeiro</li>
         </ul>
       </article>
@@ -440,62 +411,76 @@ h1 em,h2 em,.lede em{font-family:var(--serif);font-style:italic}
     <div class="carta">
       <div>
         <div class="grp">
-          <h3>Pratos principais <small>cuba, 15 a 20 pessoas</small></h3>
-          <div class="it"><span>Bacalhau com natas</span><span class="d"></span><span class="p">165€</span></div>
-          <div class="it"><span>Arroz de pato</span><span class="d"></span><span class="p">155€</span></div>
-          <div class="it"><span>Cachupa</span><span class="d"></span><span class="p">145€</span></div>
-          <div class="it"><span>Carne de porco à alentejana</span><span class="d"></span><span class="p">135€</span></div>
-          <div class="it"><span>Lombo assado com batata a padeiro</span><span class="d"></span><span class="p">125€</span></div>
+          <h3>Pratos principais</h3>
+          <p class="sub">Servidos em cuba, para 15 a 20 pessoas.</p>
+          <ul class="items">
+            <li>Bacalhau com natas</li>
+            <li>Arroz de pato</li>
+            <li>Cachupa</li>
+            <li>Carne de porco à alentejana</li>
+            <li>Lombo assado com batata a padeiro</li>
+          </ul>
         </div>
         <div class="grp">
           <h3>Tábuas</h3>
-          <div class="it"><span>Frios</span><span class="d"></span><span class="p">65€</span></div>
-          <div class="it"><span>Frutas frescas</span><span class="d"></span><span class="p">45€</span></div>
-          <div class="it"><span>Patês</span><span class="d"></span><span class="p">35€</span></div>
+          <ul class="items">
+            <li>Frios</li>
+            <li>Frutas frescas</li>
+            <li>Patês</li>
+          </ul>
         </div>
       </div>
       <div>
         <div class="grp">
-          <h3>Salgados e petiscos <small>à unidade</small></h3>
-          <div class="it"><span>Bruschetta</span><span class="d"></span><span class="p">3,50€</span></div>
-          <div class="it"><span>Mini hambúrguer</span><span class="d"></span><span class="p">1,60€</span></div>
-          <div class="it"><span>Cachorro-quente</span><span class="d"></span><span class="p">1,40€</span></div>
-          <div class="it"><span>Canapé</span><span class="d"></span><span class="p">1,30€</span></div>
-          <div class="it"><span>Mini pizza</span><span class="d"></span><span class="p">0,85€</span></div>
-          <div class="it"><span>Mini quiche</span><span class="d"></span><span class="p">0,80€</span></div>
-          <div class="it"><span>Salgados fritos, 50 un.</span><span class="d"></span><span class="p">25€</span></div>
-          <div class="it"><span>Salgados fritos, 100 un.</span><span class="d"></span><span class="p">43€</span></div>
-          <div class="it"><span>Asas de frango com maionese de alho, 20 un.</span><span class="d"></span><span class="p">25€</span></div>
+          <h3>Salgados e petiscos</h3>
+          <ul class="items">
+            <li>Salgados fritos</li>
+            <li>Mini hambúrgueres</li>
+            <li>Mini pizzas</li>
+            <li>Mini quiches</li>
+            <li>Cachorros-quentes</li>
+            <li>Canapés</li>
+            <li>Bruschettas</li>
+            <li>Asas de frango com maionese de alho</li>
+          </ul>
         </div>
         <div class="grp">
           <h3>Brigadeiros</h3>
-          <p class="sub">Tradicional, beijinho, churros, limão, maracujá, ninho com Nutella e chocolate branco.</p>
-          <div class="it"><span>25 unidades</span><span class="d"></span><span class="p">30€</span></div>
-          <div class="it"><span>50 unidades</span><span class="d"></span><span class="p">50€</span></div>
-          <div class="it"><span>100 unidades</span><span class="d"></span><span class="p">75€</span></div>
+          <p class="sub">Em caixas de 25, 50 ou 100 unidades.</p>
+          <ul class="items">
+            <li>Tradicional e beijinho</li>
+            <li>Churros</li>
+            <li>Limão e maracujá</li>
+            <li>Ninho com Nutella</li>
+            <li>Chocolate branco</li>
+          </ul>
         </div>
       </div>
       <div class="col3">
         <div class="grp">
           <h3>Sobremesas</h3>
-          <div class="it"><span>Panna cotta de frutos vermelhos</span><span class="d"></span><span class="p">18€</span></div>
-          <div class="it"><span>Pudim de natas</span><span class="d"></span><span class="p">17€</span></div>
-          <div class="it"><span>Mousse de chocolate</span><span class="d"></span><span class="p">16€</span></div>
-          <div class="it"><span>Mousse de manga</span><span class="d"></span><span class="p">15€</span></div>
-          <div class="it"><span>Arroz doce</span><span class="d"></span><span class="p">14€</span></div>
-          <div class="it"><span>Serradura</span><span class="d"></span><span class="p">14€</span></div>
+          <ul class="items">
+            <li>Pudim de natas</li>
+            <li>Mousse de chocolate</li>
+            <li>Mousse de manga</li>
+            <li>Arroz doce</li>
+            <li>Serradura</li>
+            <li>Panna cotta de frutos vermelhos</li>
+          </ul>
         </div>
         <div class="grp">
           <h3>Bolos</h3>
-          <div class="it"><span>Brigadeiro branco com frutos silvestres</span><span class="d"></span><span class="p">26€</span></div>
-          <div class="it"><span>Cenoura com chocolate</span><span class="d"></span><span class="p">25€</span></div>
-          <div class="it"><span>Brigadeiro</span><span class="d"></span><span class="p">24€</span></div>
-          <div class="it"><span>Banana caramelizada</span><span class="d"></span><span class="p">20€</span></div>
-          <div class="it"><span>Limão</span><span class="d"></span><span class="p">20€</span></div>
+          <ul class="items">
+            <li>Brigadeiro</li>
+            <li>Brigadeiro branco com frutos silvestres</li>
+            <li>Cenoura com chocolate</li>
+            <li>Banana caramelizada</li>
+            <li>Limão</li>
+          </ul>
         </div>
         <div class="custom">
-          <p>Restrições alimentares, um tema para a festa ou <em>um prato de família</em>? Diga-nos.</p>
-          <a class="tlink" href="#orcamento">Pedir menu à medida</a>
+          <p>Também fazemos menus à medida, com opções vegetarianas, sem glúten ou sem lactose.</p>
+          <a class="tlink" href="#orcamento">Pedir orçamento</a>
         </div>
       </div>
     </div>
@@ -504,8 +489,8 @@ h1 em,h2 em,.lede em{font-family:var(--serif);font-style:italic}
 
 <section class="gallery" id="galeria">
   <div class="wrap gallery-head">
-    <h2>Na <em>mesa</em></h2>
-    <a class="tlink" href="https://www.instagram.com/saboresqueficam/" target="_blank" rel="noopener">@saboresqueficam</a>
+    <h2>Galeria</h2>
+    <a class="tlink" href="https://www.instagram.com/saboresqueficam/" target="_blank" rel="noopener">Instagram</a>
   </div>
   <div class="strip" id="strip">
     <div class="track" id="track">
@@ -516,27 +501,27 @@ h1 em,h2 em,.lede em{font-family:var(--serif);font-style:italic}
       <figure class="shot"><button type="button"><img src="hero-tray.jpg" alt="Bandeja de mini sandes" style="--ar:900/853" loading="lazy"></button><figcaption>Mini sandes</figcaption></figure>
       <figure class="shot"><button type="button"><img src="gallery-prosciutto-2.jpg" alt="Petiscos com frutos vermelhos em copo" style="--ar:666/800" loading="lazy"></button><figcaption>Frutos vermelhos em copo</figcaption></figure>
       <figure class="shot"><button type="button"><img src="food-charcuterie.jpg" alt="Tábua de frios, fruta e queijos" style="--ar:486/425;--pos:50% 0%" loading="lazy"></button><figcaption>Tábua de frios</figcaption></figure>
-      <figure class="shot"><button type="button"><img src="gallery-blue-sliders.jpg" alt="Mini hambúrgueres temáticos numa bandeja" style="--ar:600/800" loading="lazy"></button><figcaption>Mini hambúrgueres temáticos</figcaption></figure>
+      <figure class="shot"><button type="button"><img src="gallery-blue-sliders.jpg" alt="Mini hambúrgueres numa bandeja" style="--ar:600/800" loading="lazy"></button><figcaption>Mini hambúrgueres</figcaption></figure>
     </div>
   </div>
   <div class="wrap gallery-foot">
-    <p>Mais fotos, vídeos e as opiniões de quem já provou estão no Instagram, no destaque «Feedback».</p>
-    <a class="tlink" href="https://www.instagram.com/saboresqueficam/" target="_blank" rel="noopener">Abrir o Instagram</a>
+    <p>Mais fotos, vídeos e opiniões de clientes no nosso Instagram.</p>
+    <a class="tlink" href="https://www.instagram.com/saboresqueficam/" target="_blank" rel="noopener">@saboresqueficam</a>
   </div>
 </section>
 
 <section class="table" id="como-funciona">
   <div class="wrap grid12">
-    <div class="table-film unveil">
+    <div class="table-film">
       <video muted loop playsinline preload="none" poster="buffet-poster.jpg" data-desk="buffet-reel.mp4" data-mob="buffet-reel-mobile.mp4" aria-label="Mesa de buffet montada pela Sabores que Ficam"></video>
       <span class="label">Mesa montada no local</span>
     </div>
     <div class="table-copy">
-      <h2>Do primeiro contacto <em>à mesa posta</em></h2>
+      <h2>Como funciona</h2>
       <div class="steps">
-        <p><strong>Conte-nos o evento.</strong> A data, o local e quantas pessoas — pelo formulário abaixo ou pelo WhatsApp.</p>
-        <p><strong>Receba a proposta.</strong> A Chef Macuta monta o menu e o orçamento à medida dos convidados e do estilo da festa.</p>
-        <p><strong>No dia, é só receber.</strong> A equipa leva, monta e apresenta o buffet no local.</p>
+        <p>Envie o pedido de orçamento com a data, o local e o número de pessoas.</p>
+        <p>A Chef Macuta prepara uma proposta de menu e o orçamento para o seu evento.</p>
+        <p>No dia, a nossa equipa leva a comida, monta o buffet e deixa tudo pronto a servir.</p>
       </div>
       <a class="btn btn-ink" href="#orcamento">Pedir orçamento</a>
     </div>
@@ -545,12 +530,12 @@ h1 em,h2 em,.lede em{font-family:var(--serif);font-style:italic}
 
 <section class="faq" id="perguntas">
   <div class="wrap grid12">
-    <h2>Perguntas <em>frequentes</em></h2>
+    <h2>Perguntas frequentes</h2>
     <dl>
-      <div><dt>Que zonas servem?</dt><dd>Lisboa e arredores. Para outras localidades, fale connosco e confirmamos a disponibilidade.</dd></div>
-      <div><dt>Com quanto tempo devo reservar?</dt><dd>Quanto antes melhor, sobretudo para fins de semana e época de casamentos.</dd></div>
-      <div><dt>Fazem menus para restrições alimentares?</dt><dd>Sim. Vegetariano, sem glúten, sem lactose e outras necessidades são combinados na proposta.</dd></div>
-      <div><dt>Os preços da ementa são finais?</dt><dd>São preços de referência dos kits e dos itens à unidade. Para eventos maiores ou personalizados, fazemos um orçamento próprio.</dd></div>
+      <div><dt>Que zonas servem?</dt><dd>Lisboa e arredores. Para outras zonas, pergunte-nos e confirmamos a disponibilidade.</dd></div>
+      <div><dt>Com quanto tempo devo pedir?</dt><dd>Quanto mais cedo, melhor, sobretudo para fins de semana e para a época de casamentos.</dd></div>
+      <div><dt>Fazem opções para restrições alimentares?</dt><dd>Sim. Fazemos opções vegetarianas, sem glúten e sem lactose, entre outras. Basta indicar no pedido.</dd></div>
+      <div><dt>Como é feito o orçamento?</dt><dd>Depende do número de pessoas, do tipo de evento e do menu. Envie o pedido pelo formulário e respondemos com uma proposta.</dd></div>
     </dl>
   </div>
 </section>
@@ -558,10 +543,9 @@ h1 em,h2 em,.lede em{font-family:var(--serif);font-style:italic}
 <section class="quote" id="orcamento">
   <div class="wrap grid12">
     <div class="quote-intro">
-      <h2>Vamos pôr <em>a mesa?</em></h2>
-      <p>Preencha os dados do evento. Ao enviar, o WhatsApp abre com o pedido já escrito — é só carregar em enviar e respondemos por lá.</p>
+      <h2>Pedir orçamento</h2>
+      <p>Preencha os dados do seu evento. Entramos em contacto consigo com uma proposta.</p>
       <div class="direct">
-        <a class="wa" href="#">WhatsApp <i>Escrever diretamente</i></a>
         <a href="https://www.instagram.com/saboresqueficam/" target="_blank" rel="noopener">Instagram <i>@saboresqueficam</i></a>
         <span>Zona <i>Lisboa e arredores</i></span>
       </div>
@@ -569,48 +553,47 @@ h1 em,h2 em,.lede em{font-family:var(--serif);font-style:italic}
 
     <form class="form" id="quoteForm" novalidate>
       <fieldset>
-        <legend>Sobre si</legend>
+        <legend>Contacto</legend>
+        <div class="f"><label for="q-nome">Nome</label><input id="q-nome" name="nome" type="text" autocomplete="name" required><span class="err">Indique o seu nome</span></div>
         <div class="row">
-          <div class="f"><label for="q-nome">Nome</label><input id="q-nome" name="nome" type="text" autocomplete="name" required><span class="err">Falta o nome</span></div>
-          <div class="f"><label for="q-tel">Telemóvel / WhatsApp</label><input id="q-tel" name="telefone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+351" required><span class="err">Falta o contacto</span></div>
+          <div class="f"><label for="q-tel">Telemóvel</label><input id="q-tel" name="telefone" type="tel" inputmode="tel" autocomplete="tel" required><span class="err">Indique um contacto</span></div>
+          <div class="f"><label for="q-email">Email (opcional)</label><input id="q-email" name="email" type="email" inputmode="email" autocomplete="email"><span class="err">Email inválido</span></div>
         </div>
       </fieldset>
       <fieldset>
-        <legend>Sobre o evento</legend>
+        <legend>Evento</legend>
         <div class="row">
           <div class="f"><label for="q-tipo">Tipo de evento</label>
             <select id="q-tipo" name="tipo" required>
               <option value="" disabled selected>Escolher</option>
               <option>Casamento</option><option>Batizado</option><option>Aniversário</option><option>Evento de empresa</option><option>Festa em casa</option><option>Outro</option>
-            </select><span class="err">Escolha o tipo</span></div>
+            </select><span class="err">Escolha o tipo de evento</span></div>
           <div class="f"><label for="q-data">Data do evento</label><input id="q-data" name="data" type="date"></div>
         </div>
         <div class="row">
-          <div class="f"><label for="q-pessoas">Quantas pessoas</label><input id="q-pessoas" name="pessoas" type="number" inputmode="numeric" min="1" max="2000" placeholder="Ex.: 60" required><span class="err">Indique o número</span></div>
+          <div class="f"><label for="q-pessoas">Número de pessoas</label><input id="q-pessoas" name="pessoas" type="number" inputmode="numeric" min="1" max="2000" required><span class="err">Indique o número de pessoas</span></div>
           <div class="f"><label for="q-servico">O que procura</label>
             <select id="q-servico" name="servico">
               <option value="" disabled selected>Escolher</option>
-              <option>Buffet completo</option><option>Petiscos e salgados</option><option>Doces e bolos</option><option>Um dos kits da ementa</option><option>Ainda não sei</option>
+              <option>Buffet completo</option><option>Petiscos e salgados</option><option>Doces e bolos</option><option>Um dos kits</option><option>Ainda não sei</option>
             </select></div>
         </div>
         <div class="row">
-          <div class="f"><label for="q-local">Onde será o evento</label><input id="q-local" name="local" type="text" placeholder="Casa, quinta, empresa…" required><span class="err">Diga-nos onde</span></div>
-          <div class="f"><label for="q-cidade">Cidade</label><input id="q-cidade" name="cidade" type="text" list="cidades" autocomplete="address-level2" required><span class="err">Falta a cidade</span>
+          <div class="f"><label for="q-local">Onde será o evento</label><input id="q-local" name="local" type="text" placeholder="Casa, quinta, empresa" required><span class="err">Indique o local</span></div>
+          <div class="f"><label for="q-cidade">Cidade</label><input id="q-cidade" name="cidade" type="text" list="cidades" autocomplete="address-level2" required><span class="err">Indique a cidade</span>
             <datalist id="cidades"><option>Lisboa</option><option>Almada</option><option>Amadora</option><option>Barreiro</option><option>Cascais</option><option>Loures</option><option>Mafra</option><option>Odivelas</option><option>Oeiras</option><option>Seixal</option><option>Setúbal</option><option>Sintra</option><option>Vila Franca de Xira</option></datalist></div>
         </div>
       </fieldset>
       <fieldset>
-        <legend>Mais alguma coisa?</legend>
-        <div class="f"><label for="q-msg">Detalhes</label><textarea id="q-msg" name="detalhes" rows="3" placeholder="Horário, restrições alimentares, pratos que gostava de ter…"></textarea></div>
+        <legend>Observações</legend>
+        <div class="f"><label for="q-msg">Detalhes</label><textarea id="q-msg" name="detalhes" rows="3" placeholder="Horário, restrições alimentares, pratos que gostava de ter"></textarea></div>
+        <div class="hp" aria-hidden="true"><label for="q-hp">Não preencher</label><input id="q-hp" name="_honey" type="text" tabindex="-1" autocomplete="off"></div>
       </fieldset>
       <div class="form-foot">
-        <button class="btn btn-caramel" type="submit">Enviar pedido</button>
-        <p>Abre o WhatsApp com os dados preenchidos.</p>
+        <button class="btn btn-caramel" type="submit" id="sendBtn">Enviar pedido</button>
+        <p>Os seus dados são usados apenas para responder a este pedido.</p>
       </div>
-      <div class="sent" id="sent" role="status">
-        <p>Obrigado! O seu pedido está pronto no WhatsApp.</p>
-        <a class="tlink" id="sentLink" href="#" target="_blank" rel="noopener">Não abriu? Toque aqui</a>
-      </div>
+      <div class="status" id="status" role="status" aria-live="polite"></div>
     </form>
   </div>
 </section>
@@ -621,14 +604,13 @@ h1 em,h2 em,.lede em{font-family:var(--serif);font-style:italic}
     <div class="foot-top">
       <img src="sabores-logo.png" alt="Sabores que Ficam">
       <nav aria-label="Rodapé">
-        <a href="#ementa">Ementa</a>
+        <a href="#servicos">Serviços</a>
         <a href="#galeria">Galeria</a>
-        <a href="#orcamento">Orçamento</a>
+        <a href="#orcamento">Pedir orçamento</a>
         <a href="https://www.instagram.com/saboresqueficam/" target="_blank" rel="noopener">Instagram</a>
-        <a class="wa" href="#">WhatsApp</a>
       </nav>
     </div>
-    <small class="label"><span>© <span id="year"></span> Sabores que Ficam · Chef Macuta</span><span>Catering e buffet · Lisboa</span></small>
+    <small class="label"><span>© <span id="year"></span> Sabores que Ficam</span><span>Catering e buffet em Lisboa</span></small>
   </div>
 </footer>
 
@@ -643,25 +625,23 @@ h1 em,h2 em,.lede em{font-family:var(--serif);font-style:italic}
 </div>
 
 <script>
-/* ======== CONFIGURAÇÃO ======== */
-const WHATSAPP = "351900000000"; // TODO: número real, só dígitos, com 351 à frente
+/* Pedidos de orçamento: enviados por email através do FormSubmit */
+const LEAD_TO = "diego.asmar@gmail.com";
+const LEAD_CC = "suporte@tenantflow.com.br";
 
 (function(){
   const $ = (s, c=document) => c.querySelector(s);
   const $$ = (s, c=document) => Array.from(c.querySelectorAll(s));
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const desktop = matchMedia('(min-width: 900px)');
-  const wa = text => 'https://wa.me/' + WHATSAPP + (text ? '?text=' + encodeURIComponent(text) : '');
 
   $('#year').textContent = new Date().getFullYear();
-  $$('.wa').forEach(a => { a.href = wa('Olá! Vim pelo site da Sabores que Ficam.'); a.target = '_blank'; a.rel = 'noopener'; });
 
   /* header */
   const header = $('#header'), hero = $('.hero'), qbar = $('#qbar'), quote = $('#orcamento');
   let quoteVisible = false;
   function onScroll(){
-    const past = window.scrollY > hero.offsetHeight - 80;
-    header.classList.toggle('solid', past);
+    header.classList.toggle('solid', window.scrollY > hero.offsetHeight - 80);
     qbar.classList.toggle('show', window.scrollY > hero.offsetHeight * .6 && !quoteVisible);
   }
   new IntersectionObserver(e => { quoteVisible = e[0].isIntersecting; onScroll(); }, {threshold: 0.05}).observe(quote);
@@ -680,7 +660,7 @@ const WHATSAPP = "351900000000"; // TODO: número real, só dígitos, com 351 à
   $('#menuClose').addEventListener('click', () => setMenu(false));
   $$('#panel nav a').forEach(a => a.addEventListener('click', () => setMenu(false)));
 
-  /* videos: right file per screen, play only when visible */
+  /* videos: file per screen size, play only when visible */
   const vids = $$('video[data-desk]');
   function pick(v){ return desktop.matches ? v.dataset.desk : (v.dataset.mob || ''); }
   function load(v){
@@ -700,15 +680,11 @@ const WHATSAPP = "351900000000"; // TODO: número real, só dígitos, com 351 à
   vids.forEach(v => vio.observe(v));
   desktop.addEventListener('change', () => vids.forEach(v => { v.removeAttribute('src'); v.load(); vio.unobserve(v); vio.observe(v); }));
 
-  /* unveil (chef photo, table film) */
-  const uio = new IntersectionObserver(entries => entries.forEach(e => { if(e.isIntersecting){ e.target._unveil.classList.add('in'); uio.unobserve(e.target); } }), {threshold:.15});
-  $$('.unveil').forEach(el => { const t = el.parentElement; t._unveil = el; uio.observe(t); });
-
   /* gallery strip: slow drift, drag, swipe */
   const strip = $('#strip'), track = $('#track');
   const originals = $$('.shot', track);
   originals.forEach(n => { const c = n.cloneNode(true); c.setAttribute('aria-hidden','true'); $$('button', c).forEach(b => b.tabIndex = -1); track.appendChild(c); });
-  let period = 0, pos = 0, hold = false, seen = false, moved = false, resumeT;
+  let period = 0, pos = 0, hold = false, seen = false, moved = false, resumeT, drag = null;
   const measure = () => { period = track.children[originals.length].offsetLeft - originals[0].offsetLeft; };
   addEventListener('load', measure); addEventListener('resize', measure); measure();
   new IntersectionObserver(e => { seen = e[0].isIntersecting; }).observe(strip);
@@ -724,14 +700,13 @@ const WHATSAPP = "351900000000"; // TODO: número real, só dígitos, com 351 à
   })();
   strip.addEventListener('scroll', () => { if(hold) wrap(); }, {passive:true});
   strip.addEventListener('mouseenter', () => pauseFor(0));
-  strip.addEventListener('mouseleave', () => { if(!drag) { hold = false; pos = strip.scrollLeft; } });
+  strip.addEventListener('mouseleave', () => { if(!drag){ hold = false; pos = strip.scrollLeft; } });
   strip.addEventListener('touchstart', () => pauseFor(0), {passive:true});
   strip.addEventListener('touchend', () => pauseFor(2500), {passive:true});
   strip.addEventListener('wheel', () => pauseFor(1800), {passive:true});
-  let drag = null;
   strip.addEventListener('pointerdown', e => { if(e.pointerType !== 'mouse') return; drag = {x:e.clientX, s:strip.scrollLeft}; moved = false; strip.classList.add('drag'); });
-  addEventListener('pointermove', e => { if(!drag) return; const dx = e.clientX - drag.x; if(Math.abs(dx) > 5) moved = true; strip.scrollLeft = drag.s - dx; wrap(); });
-  addEventListener('pointerup', () => { if(!drag) return; drag = null; strip.classList.remove('drag'); setTimeout(() => moved = false, 0); });
+  addEventListener('pointermove', e => { if(!drag) return; const dx = e.clientX - drag.x; if(Math.abs(dx) > 5) moved = true; strip.scrollLeft = drag.s - dx; });
+  addEventListener('pointerup', () => { if(!drag) return; drag = null; strip.classList.remove('drag'); wrap(); setTimeout(() => moved = false, 0); });
 
   /* lightbox */
   const lb = $('#lb'), lbImg = $('#lbImg'), lbCap = $('#lbCap');
@@ -754,12 +729,14 @@ const WHATSAPP = "351900000000"; // TODO: número real, só dígitos, com 351 à
     if(e.key === 'ArrowRight') show(idx + 1);
   });
 
-  /* quote form -> WhatsApp */
-  const form = $('#quoteForm');
+  /* quote form: validate and send by email */
+  const form = $('#quoteForm'), btn = $('#sendBtn'), status = $('#status');
   const val = n => (form.elements[n].value || '').trim();
   $$('input,select,textarea', form).forEach(el => el.addEventListener('input', () => el.closest('.f')?.classList.remove('bad')));
   $$('select', form).forEach(el => { const sync = () => el.classList.toggle('empty', !el.value); sync(); el.addEventListener('change', () => { sync(); el.closest('.f')?.classList.remove('bad'); }); });
-  form.addEventListener('submit', e => {
+  function say(title, note){ status.innerHTML = ''; const p = document.createElement('p'); p.textContent = title; status.appendChild(p); if(note){ const s = document.createElement('small'); s.textContent = note; status.appendChild(s); } status.classList.add('show'); }
+
+  form.addEventListener('submit', async e => {
     e.preventDefault();
     let first = null;
     $$('[required]', form).forEach(el => {
@@ -767,27 +744,51 @@ const WHATSAPP = "351900000000"; // TODO: número real, só dígitos, com 351 à
       el.closest('.f').classList.toggle('bad', bad);
       if(bad && !first) first = el;
     });
+    const email = form.elements.email;
+    const emailBad = !!email.value.trim() && !email.checkValidity();
+    email.closest('.f').classList.toggle('bad', emailBad);
+    if(emailBad && !first) first = email;
     if(first){ first.focus(); first.scrollIntoView({block:'center', behavior: reduce ? 'auto' : 'smooth'}); return; }
+
     let date = val('data');
     if(date){ const [y,m,d] = date.split('-'); date = d + '/' + m + '/' + y; }
-    const lines = [
-      'Olá! Gostaria de pedir um orçamento.',
-      '',
-      '*Nome:* ' + val('nome'),
-      '*Contacto:* ' + val('telefone'),
-      '*Evento:* ' + val('tipo'),
-      date ? '*Data:* ' + date : '*Data:* ainda por definir',
-      '*Pessoas:* ' + val('pessoas'),
-      '*Local:* ' + val('local'),
-      '*Cidade:* ' + val('cidade'),
-    ];
-    if(val('servico')) lines.push('*Procuro:* ' + val('servico'));
-    if(val('detalhes')) lines.push('', '*Detalhes:* ' + val('detalhes'));
-    const url = wa(lines.join('\n'));
-    $('#sentLink').href = url;
-    $('#sent').classList.add('show');
-    const w = window.open(url, '_blank');
-    if(w){ try{ w.opener = null; }catch(_){} } else { window.location.href = url; }
+    const data = {
+      _subject: 'Pedido de orçamento: ' + val('tipo') + ', ' + val('pessoas') + ' pessoas (' + val('cidade') + ')',
+      _cc: LEAD_CC,
+      _template: 'table',
+      _captcha: 'false',
+      _honey: val('_honey'),
+      'Nome': val('nome'),
+      'Telemóvel': val('telefone'),
+      'Email': val('email') || 'Não indicado',
+      'Tipo de evento': val('tipo'),
+      'Data do evento': date || 'Por definir',
+      'Número de pessoas': val('pessoas'),
+      'O que procura': val('servico') || 'Não indicado',
+      'Local do evento': val('local'),
+      'Cidade': val('cidade'),
+      'Detalhes': val('detalhes') || 'Sem detalhes'
+    };
+    if(val('email')) data._replyto = val('email');
+
+    btn.disabled = true; btn.textContent = 'A enviar...';
+    status.classList.remove('show');
+    try{
+      const res = await fetch('https://formsubmit.co/ajax/' + LEAD_TO, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
+        body: JSON.stringify(data)
+      });
+      const out = await res.json().catch(() => ({}));
+      if(!res.ok || String(out.success) !== 'true') throw new Error(out.message || 'Falha no envio');
+      form.reset();
+      $$('select', form).forEach(el => el.classList.add('empty'));
+      say('Pedido enviado. Obrigado!', 'Vamos analisar os dados do seu evento e entrar em contacto consigo em breve.');
+    }catch(err){
+      say('Não foi possível enviar o pedido.', 'Tente novamente dentro de momentos ou fale connosco pelo Instagram @saboresqueficam.');
+    }finally{
+      btn.disabled = false; btn.textContent = 'Enviar pedido';
+    }
   });
 })();
 </script>
