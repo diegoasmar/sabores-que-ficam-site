@@ -18,7 +18,7 @@
 :root{
   --paper:#ffffff;
   --ink:#15120f;
-  --caramel:#c2935b;
+  --caramel:#ba6b2f;
   --muted:rgba(21,18,15,.66);
   --hair:rgba(21,18,15,.16);
   --pad:clamp(20px,4vw,56px);
@@ -213,6 +213,9 @@ h1,h2,h3{font-family:var(--display);font-weight:400;letter-spacing:-.01em}
 .foot nav a{text-decoration:none}
 .foot nav a:hover{text-decoration:underline}
 .foot small{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-top:clamp(36px,5vw,56px);padding-top:18px;border-top:1px solid rgba(21,18,15,.28)}
+.foot .credit{margin-top:14px;font-family:var(--sans);font-size:.64rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;text-align:center;color:rgba(21,18,15,.5)}
+.foot .credit a{color:var(--ink);text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:1px}
+.foot .credit a:hover{opacity:.6}
 
 /* mobile quote bar */
 .qbar{display:none}
@@ -611,6 +614,7 @@ h1,h2,h3{font-family:var(--display);font-weight:400;letter-spacing:-.01em}
       </nav>
     </div>
     <small class="label"><span>© <span id="year"></span> Sabores que Ficam</span><span>Catering e buffet em Lisboa</span></small>
+    <p class="credit">Site desenvolvido por <a href="https://www.tenantflow.com.br" target="_blank" rel="noopener">Tenant Flow</a></p>
   </div>
 </footer>
 
