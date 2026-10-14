@@ -295,9 +295,10 @@ h1,h2,h3{font-family:var(--display);font-weight:400;letter-spacing:-.01em}
 .foot nav a{text-decoration:none}
 .foot nav a:hover{text-decoration:underline}
 .foot small{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-top:clamp(36px,5vw,56px);padding-top:18px;border-top:1px solid rgba(21,18,15,.28)}
-.foot .credit{margin-top:14px;font-family:var(--sans);font-size:.64rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;text-align:center;color:rgba(21,18,15,.5)}
-.foot .credit a{color:var(--ink);text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:1px}
-.foot .credit a:hover{opacity:.6}
+.foot .credit{margin-top:22px;display:flex;justify-content:center}
+.foot .credit a{display:inline-flex;align-items:center;gap:.6em;font-family:var(--sans);font-size:.72rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--ink);text-decoration:none;padding:.85em 1.6em;border:1px solid rgba(21,18,15,.4);border-radius:999px;background:transparent;transition:background .25s,color .25s,border-color .25s,transform .25s}
+.foot .credit a::before{content:"";width:5px;height:5px;border-radius:50%;background:currentColor;opacity:.65}
+.foot .credit a:hover{background:var(--ink);color:var(--paper);border-color:var(--ink);transform:translateY(-1px)}
 
 /* fixed quote bar — the one surviving CTA, always on screen */
 .qbar{position:fixed;left:0;right:0;margin:0 auto;bottom:calc(12px + env(safe-area-inset-bottom));z-index:40;width:min(320px, calc(100% - 24px));transform:translateY(calc(100% + 30px));transition:transform .35s ease}
@@ -726,7 +727,7 @@ h1,h2,h3{font-family:var(--display);font-weight:400;letter-spacing:-.01em}
       </nav>
     </div>
     <small class="label"><span>© <span id="year"></span> Sabores que Ficam</span><span>Catering e buffet em Lisboa</span></small>
-    <p class="credit">Site desenvolvido por <a href="https://www.tenantflow.com.br" target="_blank" rel="noopener">Tenant Flow</a></p>
+    <p class="credit"><a href="https://www.tenantflow.com.br" target="_blank" rel="noopener">Site desenvolvido por Tenant Flow</a></p>
   </div>
 </footer>
 
@@ -818,28 +819,30 @@ const LEAD_CC = "suporte@tenantflow.com.br";
   const originals = $$('.shot', track);
   originals.forEach(n => { const c = n.cloneNode(true); c.setAttribute('aria-hidden','true'); $$('button', c).forEach(b => b.tabIndex = -1); track.appendChild(c); });
   let period = 0, pos = 0, hold = false, seen = false, moved = false, resumeT, drag = null;
+  const RESUME_MS = 5000;
   const measure = () => { period = track.children[originals.length].offsetLeft - originals[0].offsetLeft; };
   addEventListener('load', measure); addEventListener('resize', measure); measure();
   new IntersectionObserver(e => { seen = e[0].isIntersecting; }).observe(strip);
   function wrap(){ if(period > 0){ if(strip.scrollLeft >= period) strip.scrollLeft -= period; else if(strip.scrollLeft <= 0) strip.scrollLeft += period; } }
-  function pauseFor(ms){ hold = true; clearTimeout(resumeT); if(ms) resumeT = setTimeout(() => { hold = false; pos = strip.scrollLeft; }, ms); }
+  function pauseThenResume(){ hold = true; clearTimeout(resumeT); resumeT = setTimeout(() => { hold = false; pos = strip.scrollLeft; }, RESUME_MS); }
   (function tick(){
     if(seen && !hold && !reduce && period > 0){
-      pos += desktop.matches ? .45 : .35;
+      pos += desktop.matches ? .9 : .7;
       if(pos >= period) pos -= period;
       strip.scrollLeft = pos;
     }
     requestAnimationFrame(tick);
   })();
   strip.addEventListener('scroll', () => { if(hold) wrap(); }, {passive:true});
-  strip.addEventListener('mouseenter', () => pauseFor(0));
-  strip.addEventListener('mouseleave', () => { if(!drag){ hold = false; pos = strip.scrollLeft; } });
-  strip.addEventListener('touchstart', () => pauseFor(0), {passive:true});
-  strip.addEventListener('touchend', () => pauseFor(2500), {passive:true});
-  strip.addEventListener('wheel', () => pauseFor(1800), {passive:true});
-  strip.addEventListener('pointerdown', e => { if(e.pointerType !== 'mouse') return; drag = {x:e.clientX, s:strip.scrollLeft}; moved = false; strip.classList.add('drag'); });
-  addEventListener('pointermove', e => { if(!drag) return; const dx = e.clientX - drag.x; if(Math.abs(dx) > 5) moved = true; strip.scrollLeft = drag.s - dx; });
-  addEventListener('pointerup', () => { if(!drag) return; drag = null; strip.classList.remove('drag'); wrap(); setTimeout(() => moved = false, 0); });
+  strip.addEventListener('mouseenter', pauseThenResume);
+  strip.addEventListener('mouseleave', () => { if(!drag) pauseThenResume(); });
+  strip.addEventListener('touchstart', pauseThenResume, {passive:true});
+  strip.addEventListener('touchmove', pauseThenResume, {passive:true});
+  strip.addEventListener('touchend', pauseThenResume, {passive:true});
+  strip.addEventListener('wheel', pauseThenResume, {passive:true});
+  strip.addEventListener('pointerdown', e => { if(e.pointerType !== 'mouse') return; drag = {x:e.clientX, s:strip.scrollLeft}; moved = false; strip.classList.add('drag'); pauseThenResume(); });
+  addEventListener('pointermove', e => { if(!drag) return; const dx = e.clientX - drag.x; if(Math.abs(dx) > 5) moved = true; strip.scrollLeft = drag.s - dx; pauseThenResume(); });
+  addEventListener('pointerup', () => { if(!drag) return; drag = null; strip.classList.remove('drag'); wrap(); pauseThenResume(); setTimeout(() => moved = false, 0); });
 
   /* lightbox */
   const lb = $('#lb'), lbImg = $('#lbImg'), lbCap = $('#lbCap');
