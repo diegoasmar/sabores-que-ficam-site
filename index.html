@@ -100,7 +100,6 @@
 :root{
   --paper:#f3e9dd;
   --ink:#714d36;
-  --caramel:#bb6c34;
   --muted:rgba(113,77,54,.66);
   --hair:rgba(113,77,54,.16);
   --pad:clamp(20px,4vw,56px);
@@ -122,11 +121,11 @@ h1,h2,h3{font-family:var(--display);font-weight:400;letter-spacing:-.01em}
 /* buttons & links */
 .btn{display:inline-flex;align-items:center;justify-content:center;font-family:var(--sans);font-size:.72rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;padding:1.2em 1.9em;border:1px solid currentColor;background:transparent;color:inherit;cursor:pointer;transition:background .25s,color .25s,border-color .25s}
 .btn-ink{background:var(--ink);border-color:var(--ink);color:var(--paper)}
-.btn-ink:hover{background:var(--caramel);border-color:var(--caramel);color:var(--ink)}
+.btn-ink:hover{background:var(--paper);border-color:var(--paper);color:var(--ink)}
 .btn-paper{background:var(--paper);border-color:var(--paper);color:var(--ink)}
-.btn-paper:hover{background:var(--caramel);border-color:var(--caramel)}
-.btn-caramel{background:var(--caramel);border-color:var(--caramel);color:var(--ink)}
-.btn-caramel:hover{background:var(--paper);border-color:var(--paper)}
+.btn-paper:hover{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.btn-caramel{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.btn-caramel:hover{background:var(--paper);border-color:var(--paper);color:var(--ink)}
 .btn[disabled]{opacity:.6;cursor:wait}
 .tlink{font-family:var(--sans);font-size:.72rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;padding-bottom:4px;border-bottom:1px solid currentColor;transition:opacity .2s}
 .tlink:hover{opacity:.6}
@@ -144,17 +143,17 @@ h1,h2,h3{font-family:var(--display);font-weight:400;letter-spacing:-.01em}
 .nav a.nl:hover{border-bottom-color:currentColor}
 .nav .btn{padding:1em 1.4em}
 .site-header.solid .nav .btn{background:var(--ink);border-color:var(--ink);color:var(--paper)}
-.site-header.solid .nav .btn:hover{background:var(--caramel);border-color:var(--caramel);color:var(--ink)}
+.site-header.solid .nav .btn:hover{background:var(--paper);border-color:var(--paper);color:var(--ink)}
 .menu-btn{display:none;background:none;border:0;color:inherit;font-family:var(--sans);font-size:.72rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;height:64px;padding:0 2px}
 
 /* mobile menu */
-.panel{position:fixed;inset:0;z-index:60;background:var(--caramel);color:var(--ink);display:flex;flex-direction:column;padding:22px var(--pad) calc(28px + env(safe-area-inset-bottom));transform:translateY(-100%);visibility:hidden;transition:transform .5s ease,visibility 0s .5s}
+.panel{position:fixed;inset:0;z-index:60;background:var(--ink);color:var(--paper);display:flex;flex-direction:column;padding:22px var(--pad) calc(28px + env(safe-area-inset-bottom));transform:translateY(-100%);visibility:hidden;transition:transform .5s ease,visibility 0s .5s}
 .panel.open{transform:none;visibility:visible;transition:transform .5s ease,visibility 0s}
 .panel-top{display:flex;justify-content:space-between;align-items:center}
 .panel-top img{height:52px;width:auto}
 .panel nav{margin-top:auto;margin-bottom:auto;padding:40px 0}
 .panel nav a{display:block;font-family:var(--display);font-size:clamp(2.3rem,10vw,3.4rem);line-height:1.15;text-decoration:none}
-.panel-foot{border-top:1px solid rgba(113,77,54,.3);padding-top:18px}
+.panel-foot{border-top:1px solid rgba(243,233,221,.3);padding-top:18px}
 
 /* hero */
 .hero{position:relative;height:100vh;height:100svh;min-height:580px;background:var(--ink);color:var(--paper);overflow:hidden}
@@ -176,12 +175,12 @@ h1,h2,h3{font-family:var(--display);font-weight:400;letter-spacing:-.01em}
 .intro-main .body{margin-top:clamp(28px,3.5vw,44px);max-width:46ch;color:var(--muted)}
 .intro-main .tlink{display:inline-block;margin-top:30px}
 .chef{grid-column:9/span 4;margin-top:clamp(40px,10vw,170px)}
-.chef img{width:100%;aspect-ratio:477/700;object-fit:cover;background:var(--caramel)}
+.chef img{width:100%;aspect-ratio:477/700;object-fit:cover;background:var(--ink)}
 .chef figcaption{margin-top:14px;font-size:.95rem;line-height:1.5;color:var(--muted)}
 .chef figcaption strong{color:var(--ink);font-weight:700}
 
 /* occasions */
-.occasions{background:var(--caramel);padding:clamp(60px,8vw,120px) 0}
+.occasions{background:var(--paper);padding:clamp(60px,8vw,120px) 0}
 .occ{font-family:var(--display);font-size:clamp(2rem,5vw,4.4rem);line-height:1.1;max-width:22ch}
 .occ-note{display:flex;flex-direction:column;gap:16px;max-width:62ch;margin-top:clamp(34px,5vw,60px);padding-top:22px;border-top:1px solid rgba(113,77,54,.3)}
 .occ-note p{max-width:62ch}
@@ -261,24 +260,24 @@ h1,h2,h3{font-family:var(--display);font-weight:400;letter-spacing:-.01em}
 .quote-intro>p{margin-top:28px;max-width:36ch;color:rgba(255,255,255,.74)}
 .direct{margin-top:44px;border-top:1px solid rgba(255,255,255,.2)}
 .direct a,.direct span{display:flex;justify-content:space-between;gap:16px;padding:17px 0;border-bottom:1px solid rgba(255,255,255,.2);text-decoration:none;font-family:var(--sans);font-size:.7rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase}
-.direct a:hover{color:var(--caramel)}
+.direct a:hover{color:var(--paper)}
 .direct i{font-style:normal;opacity:.55}
 .form{grid-column:7/span 6}
 .form fieldset{border:0;margin:0 0 30px;padding:0;min-width:0}
-.form legend{font-family:var(--display);font-size:1.3rem;color:var(--caramel);padding:0;margin-bottom:2px}
+.form legend{font-family:var(--display);font-size:1.3rem;color:var(--paper);padding:0;margin-bottom:2px}
 .row{display:grid;grid-template-columns:1fr 1fr;column-gap:28px}
 .f{padding-top:22px;min-width:0}
 .f label{display:block;font-family:var(--sans);font-size:.66rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.72)}
 .f input,.f select,.f textarea{display:block;width:100%;background:transparent;border:0;border-bottom:1px solid rgba(255,255,255,.36);border-radius:0;color:var(--paper);font-family:var(--serif);font-size:1.12rem;line-height:1.4;padding:9px 0 11px;outline:0;-webkit-appearance:none;appearance:none;transition:border-color .2s}
 .f input::placeholder,.f textarea::placeholder{color:rgba(255,255,255,.34)}
-.f input:focus,.f select:focus,.f textarea:focus{border-bottom-color:var(--caramel)}
+.f input:focus,.f select:focus,.f textarea:focus{border-bottom-color:var(--paper)}
 .f select{padding-right:26px;cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23ffffff' stroke-width='1.4'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 2px center}
 .f select:invalid,.f select.empty{color:rgba(255,255,255,.34)}
 .f select option{color:var(--ink);background:var(--paper)}
 .f input[type=date]{color-scheme:dark;min-height:48px}
 .f textarea{resize:vertical;min-height:92px}
-.f .err{display:none;margin-top:7px;font-family:var(--sans);font-size:.64rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--caramel)}
-.f.bad input,.f.bad select,.f.bad textarea{border-bottom-color:var(--caramel);border-bottom-width:2px}
+.f .err{display:none;margin-top:7px;font-family:var(--sans);font-size:.64rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--paper)}
+.f.bad input,.f.bad select,.f.bad textarea{border-bottom-color:var(--paper);border-bottom-width:2px}
 .f.bad .err{display:block}
 .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
 .form-foot{display:flex;align-items:center;flex-wrap:wrap;gap:18px 28px;margin-top:6px}
@@ -289,7 +288,7 @@ h1,h2,h3{font-family:var(--display);font-weight:400;letter-spacing:-.01em}
 .status small{display:block;margin-top:8px;font-size:.95rem;color:rgba(255,255,255,.7)}
 
 /* footer */
-.foot{background:var(--caramel);color:var(--ink);padding:clamp(30px,3.6vw,42px) 0 calc(18px + env(safe-area-inset-bottom))}
+.foot{background:var(--paper);color:var(--ink);padding:clamp(30px,3.6vw,42px) 0 calc(18px + env(safe-area-inset-bottom))}
 .foot-top{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:24px}
 .foot-top img{height:64px;width:auto;background:var(--paper);padding:8px 16px 6px;border-radius:5px}
 .foot nav{display:flex;flex-wrap:wrap;gap:14px 30px}
