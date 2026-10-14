@@ -292,7 +292,7 @@ h1,h2,h3{font-family:var(--display);font-weight:400;letter-spacing:-.01em}
 .foot .credit a:hover{opacity:.6}
 
 /* fixed quote bar — the one surviving CTA, always on screen */
-.qbar{position:fixed;right:12px;bottom:calc(12px + env(safe-area-inset-bottom));z-index:40;width:min(320px, calc(100% - 24px));transform:translateY(calc(100% + 30px));transition:transform .35s ease}
+.qbar{position:fixed;left:0;right:0;margin:0 auto;bottom:calc(12px + env(safe-area-inset-bottom));z-index:40;width:min(320px, calc(100% - 24px));transform:translateY(calc(100% + 30px));transition:transform .35s ease}
 .qbar.show{transform:none}
 .qbar a{position:relative;display:flex;justify-content:center;align-items:center;height:54px;background:var(--ink);color:var(--paper);text-decoration:none;font-family:var(--sans);font-size:.72rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;box-shadow:0 0 0 1px rgba(255,255,255,.18);animation:qbarPulse 2.6s cubic-bezier(.4,0,.2,1) infinite}
 .qbar a:hover{animation-play-state:paused}
