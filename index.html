@@ -208,6 +208,41 @@ h1,h2,h3{font-family:var(--display);font-weight:400;letter-spacing:-.01em}
 .custom p{font-family:var(--display);font-size:1.45rem;line-height:1.25}
 .custom .tlink{display:inline-block;margin-top:18px}
 
+/* services interactivity */
+.kit{position:relative;cursor:pointer;transition:transform .3s ease,box-shadow .3s ease}
+.kit:hover,.kit:focus-visible{transform:translateY(-4px);box-shadow:0 18px 34px -22px rgba(113,77,54,.4)}
+.kit:focus-visible{outline:2px solid var(--ink);outline-offset:4px}
+.kit ul{max-height:150px;overflow:hidden;position:relative}
+.kit::after{content:"";position:absolute;left:0;right:0;bottom:44px;height:56px;background:linear-gradient(to bottom,rgba(243,233,221,0),var(--paper) 85%);pointer-events:none}
+.kit-reveal{position:relative;z-index:1;margin-top:14px;display:inline-flex;align-items:center;gap:8px;background:none;border:0;padding:0;font-family:var(--sans);font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);cursor:pointer;border-bottom:1px solid currentColor;padding-bottom:3px}
+.kit-reveal svg{width:14px;height:14px;transition:transform .25s ease}
+.kit:hover .kit-reveal svg{transform:translateX(4px)}
+
+.kit-modal{position:fixed;inset:0;z-index:90;display:flex;align-items:center;justify-content:center;padding:24px;opacity:0;visibility:hidden;transition:opacity .3s ease,visibility 0s .3s}
+.kit-modal.open{opacity:1;visibility:visible;transition:opacity .3s ease,visibility 0s}
+.kit-modal-backdrop{position:absolute;inset:0;background:rgba(113,77,54,.55);backdrop-filter:blur(3px)}
+.kit-modal-card{position:relative;z-index:1;background:var(--paper);color:var(--ink);max-width:560px;width:100%;max-height:82vh;overflow-y:auto;padding:clamp(30px,4vw,50px);transform:translateY(16px);transition:transform .3s ease}
+.kit-modal.open .kit-modal-card{transform:translateY(0)}
+.kit-modal-card h3{font-family:var(--display);font-size:clamp(1.7rem,3vw,2.3rem);line-height:1.1}
+.kit-modal-card .meta{color:var(--muted);margin-top:10px}
+.kit-modal-card ul{margin-top:22px}
+.kit-modal-card li{padding:10px 0;border-top:1px solid var(--hair);line-height:1.45}
+.kit-modal-card li:first-child{border-top:0}
+.kit-modal-close{position:absolute;top:14px;right:14px;width:38px;height:38px;border-radius:50%;border:1px solid var(--hair);background:var(--paper);display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--ink);transition:background .2s,color .2s}
+.kit-modal-close:hover{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.kit-modal-close svg{width:16px;height:16px}
+
+.grp-toggle{display:flex;align-items:center;justify-content:space-between;gap:16px;width:100%;background:none;border:0;padding:0;margin:0;text-align:left;cursor:pointer;font:inherit;color:inherit}
+.grp-toggle:hover h3{opacity:.7}
+.grp-chev{width:18px;height:18px;flex:none;transition:transform .3s ease}
+.grp.open .grp-chev{transform:rotate(180deg)}
+.carta .items{max-height:0;overflow:hidden;transition:max-height .35s ease}
+
+@media (max-width:760px){
+  .kit-modal-card{padding:28px 20px}
+  .kit ul{max-height:120px}
+}
+
 /* gallery */
 .gallery{background:var(--ink);color:var(--paper);padding:clamp(72px,9vw,130px) 0 clamp(64px,8vw,110px)}
 .gallery-head{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:20px;margin-bottom:clamp(30px,4vw,48px)}
@@ -461,6 +496,10 @@ h1,h2,h3{font-family:var(--display);font-weight:400;letter-spacing:-.01em}
           <li>Bolo caseiro, mini cheesecakes e brownies artesanais</li>
           <li>Café, chá, água aromatizada e sumo natural de laranja</li>
         </ul>
+        <button type="button" class="kit-reveal" aria-haspopup="dialog">
+          <span>Ver menu completo</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
       </article>
       <article class="kit">
         <h3>Cocktail Corporativo</h3>
@@ -473,6 +512,10 @@ h1,h2,h3{font-family:var(--display);font-weight:400;letter-spacing:-.01em}
           <li>Vol-au-vent recheados e mini quiches</li>
           <li>Mini tiramisu, brigadeiros e mini lemon tart</li>
         </ul>
+        <button type="button" class="kit-reveal" aria-haspopup="dialog">
+          <span>Ver menu completo</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
       </article>
       <article class="kit">
         <h3>Buffet Self-Service</h3>
@@ -484,6 +527,10 @@ h1,h2,h3{font-family:var(--display);font-weight:400;letter-spacing:-.01em}
           <li>Mesa de doces e sobremesas</li>
           <li>Decoração elegante e personalizada</li>
         </ul>
+        <button type="button" class="kit-reveal" aria-haspopup="dialog">
+          <span>Ver menu completo</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
       </article>
       <article class="kit">
         <h3>Packs Festa &amp; Sabor</h3>
@@ -496,6 +543,10 @@ h1,h2,h3{font-family:var(--display);font-weight:400;letter-spacing:-.01em}
           <li>Mini churros com doce de leite</li>
           <li>Bolo à escolha (brigadeiro, red velvet e outros)</li>
         </ul>
+        <button type="button" class="kit-reveal" aria-haspopup="dialog">
+          <span>Ver menu completo</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
       </article>
     </div>
 
@@ -745,6 +796,16 @@ h1,h2,h3{font-family:var(--display);font-weight:400;letter-spacing:-.01em}
   <button class="lb-nav lb-next" id="lbNext" aria-label="Seguinte">&rarr;</button>
 </div>
 
+<div class="kit-modal" id="kitModal" aria-hidden="true">
+  <div class="kit-modal-backdrop" data-close></div>
+  <div class="kit-modal-card" role="dialog" aria-modal="true" aria-label="Detalhe do menu">
+    <button type="button" class="kit-modal-close" id="kitModalClose" aria-label="Fechar">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+    <div class="kit-modal-body" id="kitModalBody"></div>
+  </div>
+</div>
+
 <script>
 /* Pedidos de orçamento: enviados por email através do FormSubmit */
 const LEAD_TO = "diego.asmar@gmail.com";
@@ -929,6 +990,66 @@ const LEAD_CC = "suporte@tenantflow.com.br";
     }finally{
       btn.disabled = false; btn.textContent = 'Enviar pedido';
     }
+  });
+
+  /* kit menu modal */
+  const kitModal = $('#kitModal'), kitModalBody = $('#kitModalBody'), kitModalClose = $('#kitModalClose');
+  function openKitModal(article){
+    const h3 = article.querySelector('h3');
+    const meta = article.querySelector('.meta');
+    const ul = article.querySelector('ul');
+    if(!h3 || !ul) return;
+    kitModalBody.innerHTML = '';
+    kitModalBody.appendChild(h3.cloneNode(true));
+    if(meta) kitModalBody.appendChild(meta.cloneNode(true));
+    kitModalBody.appendChild(ul.cloneNode(true));
+    kitModal.classList.add('open');
+    kitModal.setAttribute('aria-hidden','false');
+    document.body.style.overflow = 'hidden';
+    kitModalClose.focus();
+  }
+  function closeKitModal(){
+    kitModal.classList.remove('open');
+    kitModal.setAttribute('aria-hidden','true');
+    document.body.style.overflow = '';
+  }
+  $$('.kit').forEach(k => {
+    k.setAttribute('tabindex','0');
+    k.setAttribute('role','button');
+    k.setAttribute('aria-haspopup','dialog');
+    k.addEventListener('click', () => openKitModal(k));
+    k.addEventListener('keydown', e => { if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); openKitModal(k); } });
+  });
+  kitModalClose && kitModalClose.addEventListener('click', closeKitModal);
+  const kitModalBackdrop = kitModal && kitModal.querySelector('[data-close]');
+  kitModalBackdrop && kitModalBackdrop.addEventListener('click', closeKitModal);
+  document.addEventListener('keydown', e => { if(e.key === 'Escape' && kitModal && kitModal.classList.contains('open')) closeKitModal(); });
+
+  /* carta accordion */
+  $$('.carta .grp').forEach(grp => {
+    const h3 = grp.querySelector('h3');
+    const sub = grp.querySelector('.sub');
+    const ul = grp.querySelector('.items');
+    if(!h3 || !ul) return;
+    const btn2 = document.createElement('button');
+    btn2.type = 'button';
+    btn2.className = 'grp-toggle';
+    btn2.setAttribute('aria-expanded','false');
+    grp.insertBefore(btn2, h3);
+    btn2.appendChild(h3);
+    if(sub) btn2.appendChild(sub);
+    btn2.insertAdjacentHTML('beforeend', '<svg class="grp-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10l5 5 5-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>');
+    btn2.addEventListener('click', () => {
+      const isOpen = grp.classList.contains('open');
+      if(isOpen){
+        grp.classList.remove('open');
+        ul.style.maxHeight = '0px';
+      }else{
+        grp.classList.add('open');
+        ul.style.maxHeight = ul.scrollHeight + 'px';
+      }
+      btn2.setAttribute('aria-expanded', String(!isOpen));
+    });
   });
 })();
 </script>
