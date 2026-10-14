@@ -127,9 +127,9 @@ h1,h2,h3{font-family:var(--display);font-weight:400;letter-spacing:-.01em}
 .site-header{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:flex-start;justify-content:space-between;padding:0 var(--pad);color:var(--paper);transition:background .35s,color .35s,box-shadow .35s}
 .site-header.solid{background:var(--paper);color:var(--ink);box-shadow:0 1px 0 var(--hair)}
 .brand{display:block;background:var(--paper);padding:10px 18px 8px;flex:none;transition:padding .35s}
-.brand img{height:110px;width:auto;transition:height .35s}
+.brand img{height:150px;width:auto;transition:height .35s}
 .site-header.solid .brand{padding:4px 12px 3px}
-.site-header.solid .brand img{height:78px}
+.site-header.solid .brand img{height:106px}
 .nav{display:flex;align-items:center;gap:clamp(20px,2.6vw,38px);height:90px;transition:height .35s}
 .site-header.solid .nav{height:58px}
 .nav a.nl{font-family:var(--sans);font-size:.7rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;padding:4px 0;border-bottom:1px solid transparent;transition:border-color .2s}
@@ -291,8 +291,13 @@ h1,h2,h3{font-family:var(--display);font-weight:400;letter-spacing:-.01em}
 .foot .credit a{color:var(--ink);text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:1px}
 .foot .credit a:hover{opacity:.6}
 
-/* mobile quote bar */
-.qbar{display:none}
+/* fixed quote bar — the one surviving CTA, always on screen */
+.qbar{position:fixed;right:12px;bottom:calc(12px + env(safe-area-inset-bottom));z-index:40;width:min(320px, calc(100% - 24px));transform:translateY(calc(100% + 30px));transition:transform .35s ease}
+.qbar.show{transform:none}
+.qbar a{position:relative;display:flex;justify-content:center;align-items:center;height:54px;background:var(--ink);color:var(--paper);text-decoration:none;font-family:var(--sans);font-size:.72rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;box-shadow:0 0 0 1px rgba(255,255,255,.18);animation:qbarPulse 2.6s cubic-bezier(.4,0,.2,1) infinite}
+.qbar a:hover{animation-play-state:paused}
+@keyframes qbarPulse{0%{box-shadow:0 0 0 1px rgba(255,255,255,.18),0 0 0 0 rgba(186,107,47,.55)}60%{box-shadow:0 0 0 1px rgba(255,255,255,.18),0 0 0 14px rgba(186,107,47,0)}100%{box-shadow:0 0 0 1px rgba(255,255,255,.18),0 0 0 0 rgba(186,107,47,0)}}
+@media (prefers-reduced-motion: reduce){.qbar a{animation:none}}
 
 /* ---------- responsive ---------- */
 @media (min-width:900px){
@@ -332,9 +337,6 @@ h1,h2,h3{font-family:var(--display);font-weight:400;letter-spacing:-.01em}
   .faq dl{margin-top:30px}
   .quote-intro,.form{grid-column:1/-1}
   .form{margin-top:52px}
-  .qbar{display:block;position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom));z-index:40;transform:translateY(calc(100% + 30px));transition:transform .35s ease}
-  .qbar.show{transform:none}
-  .qbar a{display:flex;justify-content:center;align-items:center;height:54px;background:var(--ink);color:var(--paper);text-decoration:none;font-family:var(--sans);font-size:.72rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;box-shadow:0 0 0 1px rgba(255,255,255,.18)}
   .foot-top img{height:80px}
   .foot{padding-bottom:calc(92px + env(safe-area-inset-bottom))}
 }
@@ -367,7 +369,6 @@ h1,h2,h3{font-family:var(--display);font-weight:400;letter-spacing:-.01em}
     <a class="nl" href="#galeria">Galeria</a>
     <a class="nl" href="#como-funciona">Como funciona</a>
     <a class="nl" href="#perguntas">Perguntas</a>
-    <a class="btn" href="#orcamento">Pedir orçamento</a>
     <button class="menu-btn" id="menuOpen" aria-controls="panel" aria-expanded="false">Menu</button>
   </nav>
 </header>
@@ -382,7 +383,6 @@ h1,h2,h3{font-family:var(--display);font-weight:400;letter-spacing:-.01em}
     <a href="#galeria">Galeria</a>
     <a href="#como-funciona">Como funciona</a>
     <a href="#perguntas">Perguntas</a>
-    <a href="#orcamento">Pedir orçamento</a>
   </nav>
   <div class="panel-foot">
     <a class="label" href="https://www.instagram.com/saboresqueficam/" target="_blank" rel="noopener">Instagram @saboresqueficam</a>
@@ -401,7 +401,6 @@ h1,h2,h3{font-family:var(--display);font-weight:400;letter-spacing:-.01em}
     <div class="hero-sub">
       <p>Catering e buffet para eventos em Lisboa e arredores, pela Chef Macuta.</p>
       <div class="hero-actions">
-        <a class="btn btn-paper" href="#orcamento">Pedir orçamento</a>
         <a class="tlink" href="#servicos">Ver serviços</a>
       </div>
     </div>
@@ -427,7 +426,6 @@ h1,h2,h3{font-family:var(--display);font-weight:400;letter-spacing:-.01em}
     <p class="occ">Casamentos, batizados, aniversários, eventos de empresa e encomendas.</p>
     <div class="occ-note">
       <p>Buffet completo ou só uma parte, como os petiscos, os salgados ou os doces.</p>
-      <a class="tlink" href="#orcamento">Pedir orçamento</a>
     </div>
   </div>
 </section>
@@ -557,7 +555,6 @@ h1,h2,h3{font-family:var(--display);font-weight:400;letter-spacing:-.01em}
         </div>
         <div class="custom">
           <p>Também fazemos menus à medida, com opções vegetarianas, sem glúten ou sem lactose.</p>
-          <a class="tlink" href="#orcamento">Pedir orçamento</a>
         </div>
       </div>
     </div>
@@ -600,7 +597,6 @@ h1,h2,h3{font-family:var(--display);font-weight:400;letter-spacing:-.01em}
         <p>A Chef Macuta prepara uma proposta de menu e o orçamento para o seu evento.</p>
         <p>No dia, a nossa equipa leva a comida, monta o buffet e deixa tudo pronto a servir.</p>
       </div>
-      <a class="btn btn-ink" href="#orcamento">Pedir orçamento</a>
     </div>
   </div>
 </section>
@@ -683,7 +679,6 @@ h1,h2,h3{font-family:var(--display);font-weight:400;letter-spacing:-.01em}
       <nav aria-label="Rodapé">
         <a href="#servicos">Serviços</a>
         <a href="#galeria">Galeria</a>
-        <a href="#orcamento">Pedir orçamento</a>
         <a href="https://www.instagram.com/saboresqueficam/" target="_blank" rel="noopener">Instagram</a>
       </nav>
     </div>
@@ -771,9 +766,8 @@ const LEAD_CC = "suporte@tenantflow.com.br";
   vids.forEach(v => vio.observe(v));
   desktop.addEventListener('change', () => vids.forEach(v => { v.removeAttribute('src'); v.load(); vio.unobserve(v); vio.observe(v); }));
 
-  /* the hero video sits above the fold on first paint: load and attempt playback right away instead of waiting on the observer's first callback */
-  const heroVideo = $('.hero .film:not(.desk-only)');
-  if (heroVideo) { load(heroVideo); attemptPlay(heroVideo); }
+  /* all three hero panels sit above the fold on first paint: load and attempt playback right away instead of waiting on the observer's first callback */
+  $$('.hero .film').forEach(v => { load(v); attemptPlay(v); });
 
   /* gallery strip: slow drift, drag, swipe */
   const strip = $('#strip'), track = $('#track');
