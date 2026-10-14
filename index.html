@@ -752,6 +752,10 @@ const LEAD_CC = "suporte@tenantflow.com.br";
   function attemptPlay(v){
     if(!v.getAttribute('src') || !v.paused) return;
     v.muted = true; v.defaultMuted = true; /* iOS/Android autoplay requires muted to be true at the moment play() is called */
+    if(v.readyState === 0){ /* calling play() before a frame has decoded makes mobile Chrome abort it as background media to save power; wait for a frame first */
+      v.addEventListener('loadeddata', () => attemptPlay(v), {once:true});
+      return;
+    }
     const p = v.play();
     if(p && p.catch) p.catch(() => {
       const retry = () => attemptPlay(v);
