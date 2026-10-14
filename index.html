@@ -52,7 +52,7 @@ h1,h2,h3{font-family:var(--display);font-weight:400;letter-spacing:-.01em}
 /* header */
 .site-header{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:flex-start;justify-content:space-between;padding:0 var(--pad);color:var(--paper);transition:background .35s,color .35s,box-shadow .35s}
 .site-header.solid{background:var(--paper);color:var(--ink);box-shadow:0 1px 0 var(--hair)}
-.brand{display:block;background:var(--caramel);padding:14px 18px 12px;flex:none;transition:padding .35s}
+.brand{display:block;background:var(--paper);padding:14px 18px 12px;flex:none;transition:padding .35s}
 .brand img{height:64px;width:auto;transition:height .35s}
 .site-header.solid .brand{padding:7px 12px 5px}
 .site-header.solid .brand img{height:46px}
@@ -683,6 +683,13 @@ const LEAD_CC = "suporte@tenantflow.com.br";
   }, {rootMargin:'250px 0px'});
   vids.forEach(v => vio.observe(v));
   desktop.addEventListener('change', () => vids.forEach(v => { v.removeAttribute('src'); v.load(); vio.unobserve(v); vio.observe(v); }));
+
+  /* retry autoplay when blocked by mobile browser policy: resume on first gesture or tab refocus */
+  function tryPlayVisible(){
+    vids.forEach(v => { if(v.getAttribute('src') && v.paused){ const p = v.play(); if(p) p.catch(()=>{}); } });
+  }
+  ['touchstart','click','scroll','keydown'].forEach(evt => addEventListener(evt, tryPlayVisible, {once:true, passive:true}));
+  document.addEventListener('visibilitychange', () => { if(!document.hidden) tryPlayVisible(); });
 
   /* gallery strip: slow drift, drag, swipe */
   const strip = $('#strip'), track = $('#track');
