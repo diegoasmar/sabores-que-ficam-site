@@ -741,6 +741,7 @@ const LEAD_CC = "suporte@tenantflow.com.br";
     if(!want){ if(v.getAttribute('src')){ v.pause(); v.removeAttribute('src'); v.load(); } return; }
     if(v.getAttribute('src') !== want){
       v.src = want;
+      v.load(); /* setting .src alone can leave the resource-selection algorithm stalled (readyState stuck at 0) when several videos are set up in the same tick; force it explicitly */
       if(v.dataset.start){ v.addEventListener('loadedmetadata', () => { v.currentTime = parseFloat(v.dataset.start); }, {once:true}); }
     }
   }
