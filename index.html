@@ -768,7 +768,7 @@ const LEAD_CC = "suporte@tenantflow.com.br";
   desktop.addEventListener('change', () => vids.forEach(v => { v.removeAttribute('src'); v.load(); vio.unobserve(v); vio.observe(v); }));
 
   /* all three hero panels sit above the fold on first paint: load and attempt playback right away instead of waiting on the observer's first callback */
-  $$('.hero .film').forEach(v => { load(v); attemptPlay(v); });
+  $$('.hero .film').forEach((v, i) => { /* stagger slightly: firing all requests for the same shared video file in one tick made the network reject one of them outright */ setTimeout(() => { load(v); attemptPlay(v); }, i * 200); });
 
   /* gallery strip: slow drift, drag, swipe */
   const strip = $('#strip'), track = $('#track');
