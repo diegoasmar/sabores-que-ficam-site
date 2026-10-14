@@ -664,7 +664,7 @@ const LEAD_CC = "suporte@tenantflow.com.br";
   $('#menuClose').addEventListener('click', () => setMenu(false));
   $$('#panel nav a').forEach(a => a.addEventListener('click', () => setMenu(false)));
 
-  /* videos: file per screen size, play only when visible */
+  /* videos: file per screen size; hero video plays immediately (always above the fold), others lazy-load in view */
   const vids = $$('video[data-desk]');
   function pick(v){ return desktop.matches ? v.dataset.desk : (v.dataset.mob || ''); }
   function load(v){
@@ -675,21 +675,26 @@ const LEAD_CC = "suporte@tenantflow.com.br";
       if(v.dataset.start){ v.addEventListener('loadedmetadata', () => { v.currentTime = parseFloat(v.dataset.start); }, {once:true}); }
     }
   }
+  function attemptPlay(v){
+    if(!v.getAttribute('src') || !v.paused) return;
+    const p = v.play();
+    if(p && p.catch) p.catch(() => {
+      const retry = () => attemptPlay(v);
+      ['touchstart','click','scroll','keydown'].forEach(evt => addEventListener(evt, retry, {once:true, passive:true}));
+    });
+  }
   const vio = new IntersectionObserver(entries => {
     entries.forEach(({target:v, isIntersecting}) => {
-      if(isIntersecting){ load(v); if(v.getAttribute('src')){ const p = v.play(); if(p) p.catch(()=>{}); } }
+      if(isIntersecting){ load(v); attemptPlay(v); }
       else { v.pause(); }
     });
   }, {rootMargin:'250px 0px'});
   vids.forEach(v => vio.observe(v));
   desktop.addEventListener('change', () => vids.forEach(v => { v.removeAttribute('src'); v.load(); vio.unobserve(v); vio.observe(v); }));
 
-  /* retry autoplay when blocked by mobile browser policy: resume on first gesture or tab refocus */
-  function tryPlayVisible(){
-    vids.forEach(v => { if(v.getAttribute('src') && v.paused){ const p = v.play(); if(p) p.catch(()=>{}); } });
-  }
-  ['touchstart','click','scroll','keydown'].forEach(evt => addEventListener(evt, tryPlayVisible, {once:true, passive:true}));
-  document.addEventListener('visibilitychange', () => { if(!document.hidden) tryPlayVisible(); });
+  /* the hero video sits above the fold on first paint: load and attempt playback right away instead of waiting on the observer's first callback */
+  const heroVideo = $('.hero .film:not(.desk-only)');
+  if (heroVideo) { load(heroVideo); attemptPlay(heroVideo); }
 
   /* gallery strip: slow drift, drag, swipe */
   const strip = $('#strip'), track = $('#track');
