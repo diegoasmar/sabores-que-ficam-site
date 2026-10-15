@@ -401,9 +401,10 @@ h1,h2,h3{font-family:var(--display);font-weight:400;letter-spacing:-.01em}
   .kit,.kit:nth-child(n){border-left:0;padding-left:0;padding-right:0}
   .kit+.kit{border-top:1px solid var(--hair)}
   .carta,.carta .col3{grid-template-columns:1fr}
-  .carta .col3 .grp{margin-top:46px}
-  .carta .col3 .grp:first-child{margin-top:0}
+  .carta>div{margin-top:40px}
+  .carta>div:first-child{margin-top:0}
   .grp+.grp{margin-top:40px}
+  .carta .col3 .grp+.grp{margin-top:40px}
   .faq dl{grid-template-columns:1fr;gap:28px}
   .row{grid-template-columns:1fr}
   .gallery-head{align-items:flex-start;flex-direction:column}
