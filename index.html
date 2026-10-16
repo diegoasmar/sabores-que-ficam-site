@@ -895,7 +895,7 @@ const LEAD_CC = "suporte@tenantflow.com.br";
   desktop.addEventListener('change', () => vids.forEach(v => { v.removeAttribute('src'); v.load(); vio.unobserve(v); vio.observe(v); }));
 
   /* all three hero panels sit above the fold on first paint: load and attempt playback right away instead of waiting on the observer's first callback */
-  $('.hero .film').forEach((v, i) => { /* stagger slightly: firing all requests for the same shared video file in one tick made the network reject one of them outright */ setTimeout(() => { load(v); attemptPlay(v); }, i * 200); });
+  $$('.hero .film').forEach((v, i) => { /* stagger slightly: firing all requests for the same shared video file in one tick made the network reject one of them outright */ setTimeout(() => { load(v); attemptPlay(v); }, i * 200); });
 
   /* some mobile browsers (in-app webviews like Instagram's, data-saver modes) only allow video playback after a real user gesture, even when muted; the hero plays instantly because it's wired to start at load, but a video further down the page (the table/buffet reel) can still need that gesture first - so the very first touch/scroll/click anywhere primes every video once, instead of making the visitor tap the clip itself */
   let primed = false;
