@@ -1075,6 +1075,7 @@ const LEAD_CC = "suporte@tenantflow.com.br";
     kitModal.classList.add('open');
     kitModal.setAttribute('aria-hidden','false');
     document.body.style.overflow = 'hidden';
+    qbar.classList.remove('show');
     void kitModal.offsetHeight;
     requestAnimationFrame(() => kitModalClose.focus());
   }
@@ -1082,6 +1083,7 @@ const LEAD_CC = "suporte@tenantflow.com.br";
     kitModal.classList.remove('open');
     kitModal.setAttribute('aria-hidden','true');
     document.body.style.overflow = '';
+    onScroll();
   }
   $$('.kit').forEach(k => {
     k.setAttribute('tabindex','0');
