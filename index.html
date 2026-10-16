@@ -237,7 +237,7 @@ h1,h2,h3{font-family:var(--display);font-weight:400;letter-spacing:-.01em}
 
 .kit-modal{position:fixed;inset:0;z-index:90;display:flex;align-items:center;justify-content:center;padding:24px;opacity:0;visibility:hidden;transition:opacity .3s ease,visibility 0s .3s}
 .kit-modal.open{opacity:1;visibility:visible;transition:opacity .3s ease,visibility 0s}
-.kit-modal-backdrop{position:absolute;inset:0;background:rgba(113,77,54,.55);backdrop-filter:blur(3px)}
+.kit-modal-backdrop{position:absolute;inset:0;background:rgba(113,77,54,.72)}
 .kit-modal-card{position:relative;z-index:1;background:var(--paper);color:var(--ink);max-width:560px;width:100%;max-height:82vh;overflow-y:auto;padding:clamp(30px,4vw,50px);transform:translateY(16px);transition:transform .3s ease}
 .kit-modal.open .kit-modal-card{transform:translateY(0)}
 .kit-modal-card h3{font-family:var(--display);font-size:clamp(1.7rem,3vw,2.3rem);line-height:1.1}
@@ -435,6 +435,8 @@ h1,h2,h3{font-family:var(--display);font-weight:400;letter-spacing:-.01em}
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
 }
+
+.kit,.kit-reveal,.grp-toggle,.btn,.g-nav,.kit-modal-close,.tlink{touch-action:manipulation;-webkit-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent}
 </style>
 </head>
 <body>
@@ -698,7 +700,7 @@ h1,h2,h3{font-family:var(--display);font-weight:400;letter-spacing:-.01em}
   </div>
   <div class="strip" id="strip">
     <div class="track" id="track">
-      <figure class="shot"><button type="button"><img src="chef-tray.jpg" alt="Mini hambúrgueres de pão azul numa bandeja" style="--ar:678/900" loading="lazy"></button><figcaption>Mini hambúrgueres de pão azul</figcaption></figure>
+      <figure class="shot"><button type="button"><img src="chef-tray.jpg" alt="Mini hambúrgueres artesanais de vitela numa bandeja" style="--ar:678/900" loading="lazy"></button><figcaption>Mini hambúrgueres artesanais de vitela</figcaption></figure>
       <figure class="shot"><button type="button"><img src="gallery-prosciutto-1.jpg" alt="Espetadas de melão com presunto" style="--ar:666/800" loading="lazy"></button><figcaption>Melão com presunto</figcaption></figure>
       <figure class="shot"><button type="button"><img src="gallery-pasteis-nata.jpg" alt="Chef da Sabores que Ficam com uma bandeja de mini empadas" style="--ar:1000/1250" loading="lazy"></button><figcaption>Mini empadas</figcaption></figure>
       <figure class="shot"><button type="button"><img src="food-charcuterie.jpg" alt="Tábua de frios, fruta e queijos" style="--ar:486/425;--pos:50% 0%" loading="lazy"></button><figcaption>Tábua de frios</figcaption></figure>
@@ -1072,7 +1074,8 @@ const LEAD_CC = "suporte@tenantflow.com.br";
     kitModal.classList.add('open');
     kitModal.setAttribute('aria-hidden','false');
     document.body.style.overflow = 'hidden';
-    kitModalClose.focus();
+    void kitModal.offsetHeight;
+    requestAnimationFrame(() => kitModalClose.focus());
   }
   function closeKitModal(){
     kitModal.classList.remove('open');
