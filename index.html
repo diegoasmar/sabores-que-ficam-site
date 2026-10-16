@@ -200,11 +200,12 @@ h1,h2,h3{font-family:var(--display);font-weight:400;letter-spacing:-.01em}
 .menu-head{align-items:end;margin-bottom:clamp(40px,6vw,76px)}
 .menu-head h2{grid-column:1/span 6;font-size:clamp(3.2rem,8.4vw,7.4rem);line-height:.9}
 .menu-head p{grid-column:8/span 5;color:var(--muted);max-width:42ch}
-.kits{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--ink);border-bottom:1px solid var(--ink)}
-.kit{padding:28px clamp(16px,2vw,28px) 32px;border-left:1px solid var(--hair)}
+.kits{counter-reset:kit-index;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--ink);border:1px solid var(--ink);margin-top:clamp(28px,4vw,40px)}
+.kit{counter-increment:kit-index;position:relative;display:flex;flex-direction:column;background:var(--paper);padding:clamp(30px,3.2vw,38px) clamp(24px,2.6vw,32px) clamp(26px,2.8vw,32px)}
+.kit::before{content:counter(kit-index,decimal-leading-zero);position:absolute;top:clamp(26px,3vw,34px);right:clamp(22px,2.6vw,30px);font-family:var(--display);font-size:.8rem;letter-spacing:.06em;color:var(--muted)}
 .kit:first-child{border-left:0;padding-left:0}
 .kit:last-child{padding-right:0}
-.kit h3{font-size:1.6rem;line-height:1.1}
+.kit h3{font-size:1.6rem;line-height:1.1;padding-right:36px}
 .kit .meta{margin-top:6px;font-size:.93rem;color:var(--muted)}
 .kit ul{margin-top:18px;font-size:.95rem;line-height:1.45}
 .kit li{padding:7px 0;border-top:1px solid var(--hair)}
@@ -226,7 +227,11 @@ h1,h2,h3{font-family:var(--display);font-weight:400;letter-spacing:-.01em}
 }
 .kit ul{max-height:150px;overflow:hidden;position:relative}
 .kit::after{content:"";position:absolute;left:0;right:0;bottom:44px;height:56px;background:linear-gradient(to bottom,rgba(243,233,221,0),var(--paper) 85%);pointer-events:none}
-.kit-reveal{position:relative;z-index:1;margin-top:20px;display:inline-flex;align-items:center;gap:12px;background:none;border:1px solid var(--ink);border-radius:999px;padding:9px 9px 9px 20px;font-family:var(--sans);font-size:.7rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);cursor:pointer;overflow:hidden;isolation:isolate;transition:border-color .35s ease}
+.kit-reveal{position:relative;z-index:1;align-self:stretch;margin-top:auto;display:flex;align-items:center;justify-content:center;gap:10px;background:none;border:1px solid var(--ink);border-radius:999px;padding:16px 20px;font-family:var(--sans);font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);cursor:pointer;overflow:hidden;isolation:isolate;transition:background-color .35s ease,color .35s ease}
+.kit-reveal:active{background:var(--ink);color:var(--paper)}
+@media (hover:hover){
+  .kit-reveal:hover{background:var(--ink);color:var(--paper)}
+}
 .kit-reveal span{position:relative;z-index:1;transition:color .35s ease}
 .kit-reveal::before{content:"";position:absolute;inset:0;background:var(--ink);transform:scaleX(0);transform-origin:left;transition:transform .4s cubic-bezier(.65,0,.35,1);z-index:0}
 .kit-reveal:hover::before,.kit-reveal:focus-visible::before{transform:scaleX(1)}
@@ -384,9 +389,6 @@ h1,h2,h3{font-family:var(--display);font-weight:400;letter-spacing:-.01em}
 }
 @media (max-width:1100px){
   .kits{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .kit:nth-child(3){border-left:0;padding-left:0}
-  .kit:nth-child(2){padding-right:0}
-  .kit:nth-child(n+3){border-top:1px solid var(--hair)}
   .carta{grid-template-columns:repeat(2,minmax(0,1fr))}
   .carta .col3{grid-column:1/-1;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:clamp(32px,5vw,72px);margin-top:46px}
   .carta .col3 .grp+.grp{margin-top:0}
@@ -421,8 +423,6 @@ h1,h2,h3{font-family:var(--display);font-weight:400;letter-spacing:-.01em}
 @media (max-width:640px){
   body{font-size:1rem}
   .kits{grid-template-columns:1fr}
-  .kit,.kit:nth-child(n){border-left:0;padding-left:0;padding-right:0}
-  .kit+.kit{border-top:1px solid var(--hair)}
   .carta,.carta .col3{grid-template-columns:1fr}
   .carta>div{margin-top:40px}
   .carta>div:first-child{margin-top:0}
