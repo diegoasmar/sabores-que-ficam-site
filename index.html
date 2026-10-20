@@ -286,14 +286,20 @@ h1,h2,h3{font-family:var(--display);font-weight:400;letter-spacing:-.01em}
 .track{display:flex;gap:14px;width:max-content;padding:0 var(--pad)}
 .shot{flex:none}
 .shot button{display:block;border:0;padding:0;background:none;cursor:inherit;overflow:hidden}
-.shot img{height:clamp(290px,34vw,460px);width:auto;aspect-ratio:var(--ar);object-fit:cover;object-position:var(--pos,50% 50%);user-select:none;-webkit-user-drag:none;pointer-events:none;transition:transform .6s cubic-bezier(.16,1,.3,1)}
+.shot img{height:clamp(290px,34vw,460px);width:auto;aspect-ratio:var(--ar);object-fit:cover;object-position:var(--pos,50% 50%);user-select:none;-webkit-user-drag:none;pointer-events:none;filter:grayscale(1) brightness(.86) contrast(1.05);transition:transform .6s cubic-bezier(.16,1,.3,1),filter .9s cubic-bezier(.16,1,.3,1)}
 .shot:active img{transform:scale(1.02)}
 @media (hover:hover){
   .shot:hover img{transform:scale(1.045)}
 }
-.shot figcaption{margin-top:12px;font-size:.92rem;color:rgba(255,255,255,.66)}
+.shot.is-active img{filter:grayscale(0) brightness(1) contrast(1)}
+.shot figcaption{margin-top:12px;font-size:.92rem;color:rgba(255,255,255,.66);opacity:.55;transition:opacity .6s ease}
+.shot.is-active figcaption{opacity:1}
 .gallery-foot{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:16px 40px;margin-top:clamp(36px,4vw,54px)}
 .gallery-foot p{max-width:56ch;color:rgba(255,255,255,.72)}
+
+.g-progress-wrap{margin-top:clamp(20px,2.4vw,28px)}
+.g-progress{position:relative;height:2px;background:rgba(243,233,221,.16);border-radius:2px;overflow:hidden}
+.g-progress span{position:absolute;top:0;left:0;height:100%;width:18%;background:var(--paper);border-radius:2px;transform:translateX(0%)}
 
 /* lightbox */
 .lb{position:fixed;inset:0;z-index:80;background:var(--ink);color:var(--paper);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:64px 16px 40px;opacity:0;visibility:hidden;transition:opacity .3s,visibility 0s .3s}
@@ -715,6 +721,7 @@ h1,h2,h3{font-family:var(--display);font-weight:400;letter-spacing:-.01em}
     <button type="button" class="g-nav g-prev" aria-label="Fotos anteriores"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
     <button type="button" class="g-nav g-next" aria-label="Mais fotos"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
   </div>
+  <div class="wrap g-progress-wrap"><div class="g-progress" aria-hidden="true"><span></span></div></div>
   <div class="wrap gallery-foot">
     <p>Mais fotos, vídeos e opiniões de clientes no nosso Instagram.</p>
     <a class="tlink" href="https://www.instagram.com/saboresqueficam/" target="_blank" rel="noopener">@saboresqueficam</a>
@@ -949,6 +956,17 @@ const LEAD_CC = "suporte@tenantflow.com.br";
   const measure = () => { period = track.children[originals.length].offsetLeft - originals[0].offsetLeft; };
   addEventListener('load', measure); addEventListener('resize', measure); measure();
   new IntersectionObserver(e => { seen = e[0].isIntersecting; }).observe(strip);
+  const gProgress = $('.g-progress span');
+  const PROGRESS_THUMB = .18;
+  function updateProgress(){
+    if(period <= 0 || !gProgress) return;
+    const p = ((strip.scrollLeft % period) + period) % period / period;
+    gProgress.style.transform = 'translateX(' + (p * (1 - PROGRESS_THUMB) / PROGRESS_THUMB * 100) + '%)';
+  }
+  const activeObs = new IntersectionObserver(entries => {
+    entries.forEach(en => en.target.classList.toggle('is-active', en.isIntersecting));
+  }, {root: strip, rootMargin: '0px -38% 0px -38%'});
+  $$('.shot', track).forEach(s => activeObs.observe(s));
   function wrap(){ if(period > 0){ if(strip.scrollLeft >= period) strip.scrollLeft -= period; else if(strip.scrollLeft <= 0) strip.scrollLeft += period; } }
   function pauseThenResume(){ hold = true; clearTimeout(resumeT); resumeT = setTimeout(() => { hold = false; pos = strip.scrollLeft; }, RESUME_MS); }
   (function tick(){
@@ -957,9 +975,10 @@ const LEAD_CC = "suporte@tenantflow.com.br";
       if(pos >= period) pos -= period;
       strip.scrollLeft = pos;
     }
+    updateProgress();
     requestAnimationFrame(tick);
   })();
-  strip.addEventListener('scroll', () => { if(hold) wrap(); }, {passive:true});
+  strip.addEventListener('scroll', () => { if(hold) wrap(); updateProgress(); }, {passive:true});
   strip.addEventListener('mouseenter', pauseThenResume);
   strip.addEventListener('mouseleave', () => { if(!drag) pauseThenResume(); });
   strip.addEventListener('touchstart', pauseThenResume, {passive:true});
@@ -979,7 +998,7 @@ const LEAD_CC = "suporte@tenantflow.com.br";
   const lb = $('#lb'), lbImg = $('#lbImg'), lbCap = $('#lbCap');
   let idx = 0;
   function show(i){ idx = (i + originals.length) % originals.length; const im = $('img', originals[idx]); lbImg.src = im.src; lbImg.alt = im.alt; lbCap.textContent = $('figcaption', originals[idx]).textContent; }
-  function openLb(i){ show(i); lb.classList.add('open'); document.body.style.overflow = 'hidden'; pauseFor(0); $('#lbClose').focus(); }
+  function openLb(i){ show(i); lb.classList.add('open'); document.body.style.overflow = 'hidden'; hold = true; $('#lbClose').focus(); }
   function closeLb(){ lb.classList.remove('open'); document.body.style.overflow = ''; hold = false; pos = strip.scrollLeft; }
   $$('.shot button', track).forEach((b, i) => b.addEventListener('click', () => { if(!moved) openLb(i % originals.length); }));
   $('#lbClose').addEventListener('click', closeLb);
