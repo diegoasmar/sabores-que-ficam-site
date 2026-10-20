@@ -127,6 +127,8 @@ h1,h2,h3{font-family:var(--display);font-weight:400;letter-spacing:-.01em}
 .btn-ink:hover,.btn-caramel:hover{background:var(--paper);border-color:var(--paper);color:var(--ink)}
 .btn-paper{background:var(--paper);border-color:var(--paper);color:var(--ink)}
 .btn-paper:hover{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+#sendBtn{background:var(--paper);border-color:var(--paper);color:var(--ink)}
+#sendBtn:hover{background:transparent;border-color:var(--paper);color:var(--paper)}
 @media (hover:hover){
   .btn:hover{transform:translateY(-3px);box-shadow:0 20px 36px -18px rgba(113,77,54,.55)}
   .btn-ink::after,.btn-caramel::after,.btn-paper::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 30%,rgba(255,255,255,.22) 50%,transparent 70%);transform:translateX(-130%);transition:transform .7s cubic-bezier(.16,1,.3,1);pointer-events:none;z-index:1}
@@ -768,8 +770,14 @@ h1,h2,h3{font-family:var(--display);font-weight:400;letter-spacing:-.01em}
         <div class="f"><label for="q-nome">Nome</label><input id="q-nome" name="nome" type="text" autocomplete="name" required><span class="err">Indique o seu nome</span></div>
         <div class="row">
           <div class="f"><label for="q-tel">Telemóvel</label><input id="q-tel" name="telefone" type="tel" inputmode="tel" autocomplete="tel" required><span class="err">Indique um contacto</span></div>
-          <div class="f"><label for="q-email">Email (opcional)</label><input id="q-email" name="email" type="email" inputmode="email" autocomplete="email"><span class="err">Email inválido</span></div>
+          <div class="f"><label for="q-email">Email</label><input id="q-email" name="email" type="email" inputmode="email" autocomplete="email" required><span class="err">Indique um email válido</span></div>
         </div>
+        <div class="f"><label for="q-contacto-pref">Como prefere ser contactado</label>
+          <select id="q-contacto-pref" name="contacto_pref" required>
+            <option value="" disabled selected>Escolher</option>
+            <option>Telefone</option>
+            <option>Email</option>
+          </select><span class="err">Escolha uma opção</span></div>
       </fieldset>
       <fieldset>
         <legend>Evento</legend>
@@ -849,7 +857,7 @@ h1,h2,h3{font-family:var(--display);font-weight:400;letter-spacing:-.01em}
 <script>
 /* Pedidos de orçamento: enviados por email através do FormSubmit */
 const LEAD_TO = "diego.asmar@gmail.com";
-const LEAD_CC = "suporte@tenantflow.com.br";
+const LEAD_CC = "suporte@tenantflow.com.br,saboresqueficam@gmail.com";
 
 (function(){
   const $ = (s, c=document) => c.querySelector(s);
@@ -1007,14 +1015,10 @@ const LEAD_CC = "suporte@tenantflow.com.br";
     e.preventDefault();
     let first = null;
     $$('[required]', form).forEach(el => {
-      const bad = !el.value.trim() || (el.type === 'number' && !(+el.value > 0));
+      const bad = !el.value.trim() || (el.type === 'number' && !(+el.value > 0)) || (el.type === 'email' && !el.checkValidity());
       el.closest('.f').classList.toggle('bad', bad);
       if(bad && !first) first = el;
     });
-    const email = form.elements.email;
-    const emailBad = !!email.value.trim() && !email.checkValidity();
-    email.closest('.f').classList.toggle('bad', emailBad);
-    if(emailBad && !first) first = email;
     if(first){ first.focus(); first.scrollIntoView({block:'center', behavior: reduce ? 'auto' : 'smooth'}); return; }
 
     let date = val('data');
@@ -1027,7 +1031,8 @@ const LEAD_CC = "suporte@tenantflow.com.br";
       _honey: val('_honey'),
       'Nome': val('nome'),
       'Telemóvel': val('telefone'),
-      'Email': val('email') || 'Não indicado',
+      'Email': val('email'),
+      'Prefere ser contactado por': val('contacto_pref'),
       'Tipo de evento': val('tipo'),
       'Data do evento': date || 'Por definir',
       'Número de pessoas': val('pessoas'),
@@ -1036,7 +1041,7 @@ const LEAD_CC = "suporte@tenantflow.com.br";
       'Cidade': val('cidade'),
       'Detalhes': val('detalhes') || 'Sem detalhes'
     };
-    if(val('email')) data._replyto = val('email');
+    data._replyto = val('email');
 
     btn.disabled = true; btn.textContent = 'A enviar...';
     status.classList.remove('show');
