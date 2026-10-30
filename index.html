@@ -855,9 +855,8 @@ h1,h2,h3{font-family:var(--display);font-weight:400;letter-spacing:-.01em}
 </div>
 
 <script>
-/* Pedidos de orçamento: enviados por email através do FormSubmit */
-const LEAD_TO = "diego.asmar@gmail.com";
-const LEAD_CC = "suporte@tenantflow.com.br";
+/* Pedidos de orçamento: enviados através de um Google Forms (mais fiável que serviços de terceiros) */
+const GFORM_ACTION = "https://docs.google.com/forms/d/e/1FAIpQLSemZUwLhP53R-F3kPZ3al7zneXIEWxC8zE8ZDBjfgV1h9QF-w/formResponse";
 
 (function(){
   const $ = (s, c=document) => c.querySelector(s);
@@ -1023,40 +1022,28 @@ const LEAD_CC = "suporte@tenantflow.com.br";
     if(first){ first.focus(); first.scrollIntoView({block:'center', behavior: reduce ? 'auto' : 'smooth'}); return; }
 
     let date = val('data');
-    if(date){ const [y,m,d] = date.split('-'); date = d + '/' + m + '/' + y; }
-    const data = {
-      _subject: 'Pedido de orçamento: ' + val('tipo') + ', ' + val('pessoas') + ' pessoas (' + val('cidade') + ')',
-      _cc: LEAD_CC,
-      _template: 'table',
-      _captcha: 'false',
-      _honey: val('_honey'),
-      'Nome': val('nome'),
-      'Telemóvel': val('telefone'),
-      'Email': val('email'),
-      'Prefere ser contactado por': val('contacto_pref'),
-      'Tipo de evento': val('tipo'),
-      'Data do evento': date || 'Por definir',
-      'Número de pessoas': val('pessoas'),
-      'O que procura': val('servico') || 'Não indicado',
-      'Local do evento': val('local'),
-      'Cidade': val('cidade'),
-      'Detalhes': val('detalhes') || 'Sem detalhes'
-    };
-    data._replyto = val('email');
+    const params = new URLSearchParams();
+    params.append('entry.895838125', val('nome'));
+    params.append('entry.474128980', val('telefone'));
+    params.append('entry.1006450712', val('email'));
+    params.append('entry.234168195', val('contacto_pref'));
+    params.append('entry.306175729', val('tipo'));
+    if(date){
+      const [y,m,d] = date.split('-');
+      params.append('entry.2096905055_year', y);
+      params.append('entry.2096905055_month', m);
+      params.append('entry.2096905055_day', d);
+    }
+    params.append('entry.2106227164', val('pessoas'));
+    if(val('servico')) params.append('entry.286153501', val('servico'));
+    params.append('entry.778283149', val('local'));
+    params.append('entry.1353905398', val('cidade'));
+    params.append('entry.1128429795', val('detalhes') || 'Sem detalhes');
 
     btn.disabled = true; btn.textContent = 'A enviar...';
     status.classList.remove('show');
-    const sendOnce = () => fetch('https://formsubmit.co/ajax/' + LEAD_TO, {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
-      body: JSON.stringify(data)
-    });
     try{
-      let res;
-      try{ res = await sendOnce(); }
-      catch(e){ await new Promise(r => setTimeout(r, 900)); res = await sendOnce(); }
-      const out = await res.json().catch(() => ({}));
-      if(!res.ok || String(out.success) !== 'true') throw new Error(out.message || 'Falha no envio');
+      await fetch(GFORM_ACTION, { method: 'POST', mode: 'no-cors', body: params });
       form.reset();
       $$('select', form).forEach(el => el.classList.add('empty'));
       say('Pedido enviado. Obrigado!', 'Vamos analisar os dados do seu evento e entrar em contacto consigo em breve.');
