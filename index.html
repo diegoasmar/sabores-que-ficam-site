@@ -827,6 +827,7 @@ h1,h2,h3{font-family:var(--display);font-weight:400;letter-spacing:-.01em}
         <a href="#galeria">Galeria</a>
         <a href="https://www.instagram.com/saboresqueficam/" target="_blank" rel="noopener">Instagram</a>
         <a href="privacidade.html">Privacidade</a>
+        <a href="https://www.livroreclamacoes.pt/Inicio/Reclamacao" target="_blank" rel="noopener">Livro de Reclamações</a>
       </nav>
     </div>
     <small class="label"><span>© <span id="year"></span> Sabores que Ficam</span><span>Catering e buffet em Lisboa</span></small>
@@ -1144,6 +1145,34 @@ const GFORM_ACTION = "https://docs.google.com/forms/d/e/1FAIpQLSemZUwLhP53R-F3kP
       }
       btn2.setAttribute('aria-expanded', String(!isOpen));
     });
+  });
+})();
+</script>
+
+<style>
+#cookieNotice{position:fixed;left:0;right:0;bottom:0;z-index:70;background:var(--ink);color:var(--paper);padding:16px var(--pad);display:flex;flex-wrap:wrap;gap:12px 28px;align-items:center;justify-content:center;font:14px/1.55 var(--sans);transform:translateY(110%);transition:transform .45s ease}
+#cookieNotice.show{transform:translateY(0)}
+#cookieNotice p{margin:0;max-width:620px;color:var(--paper)}
+#cookieNotice a{color:var(--paper);text-decoration:underline;text-underline-offset:2px}
+#cookieNotice button{flex:none;background:var(--paper);color:var(--ink);border:1px solid var(--paper);padding:.65em 1.5em;font:600 13px/1 var(--sans);letter-spacing:.02em;cursor:pointer;border-radius:2px}
+#cookieNotice button:hover{background:transparent;color:var(--paper)}
+@media (max-width:640px){#cookieNotice{justify-content:flex-start;text-align:left}}
+</style>
+<div id="cookieNotice" role="region" aria-label="Aviso de cookies">
+  <p>Este site não utiliza cookies de rastreio ou de publicidade. Carregamos apenas tipografia alojada pela Google para a apresentação visual do site. <a href="privacidade.html">Saber mais</a></p>
+  <button type="button" id="cookieNoticeOk">Entendi</button>
+</div>
+<script>
+(function(){
+  var KEY = 'cookieNoticeDismissed';
+  try{ if(localStorage.getItem(KEY)) return; }catch(e){}
+  var el = document.getElementById('cookieNotice');
+  var btn = document.getElementById('cookieNoticeOk');
+  if(!el || !btn) return;
+  requestAnimationFrame(function(){ el.classList.add('show'); });
+  btn.addEventListener('click', function(){
+    el.classList.remove('show');
+    try{ localStorage.setItem(KEY, '1'); }catch(e){}
   });
 })();
 </script>
