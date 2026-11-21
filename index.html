@@ -439,31 +439,13 @@ h1,h2,h3{font-family:var(--display);font-weight:400;letter-spacing:-.01em}
 .kit,.kit-reveal,.grp-toggle,.btn,.g-nav,.kit-modal-close,.tlink{touch-action:manipulation;-webkit-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent}
 </style>
 <style id="xmasStyle">
-:root{--pine:#2b4a37;--pine2:#3c6349;--wine:#7a2230;--wine2:#8c2836;--gold:#c2a05c}
-#xmasBar{position:fixed;top:0;left:0;right:0;z-index:60;background:var(--ink);color:var(--paper);box-shadow:0 0 0 1px var(--gold) inset}
-#xmasBar .xb-row{display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;padding:14px var(--pad) 13px;text-align:center;max-width:1320px;margin:0 auto}
-#xmasBar .xb-holly{width:26px;height:19px;flex:none}
-#xmasBar .xb-msg{font-family:var(--display);font-size:clamp(.95rem,1.6vw,1.15rem);line-height:1.3}
-#xmasBar .xb-msg em{font-style:normal;color:var(--gold)}
-#xmasBar .btn{flex:none;padding:.62em 1.3em;font-size:.6rem}
-body.xmas-active{padding-top:var(--xmas-bar-h,56px)}
-body.xmas-active .site-header{top:var(--xmas-bar-h,56px)}
-.xmas-wreath{position:absolute;top:clamp(70px,12vh,130px);right:var(--pad);z-index:3;width:clamp(92px,11vw,156px);height:auto;filter:drop-shadow(0 10px 18px rgba(0,0,0,.35))}
-.xmas-tree{position:absolute;left:var(--pad);top:clamp(72px,12.5vh,132px);z-index:3;width:clamp(62px,8vw,108px);height:auto;filter:drop-shadow(0 8px 16px rgba(0,0,0,.4))}
-.xmas-snow{position:absolute;inset:0;z-index:2;overflow:hidden;pointer-events:none}
-.xmas-flake{position:absolute;top:-4%;border-radius:50%;background:#fff;opacity:.75;animation:xmasFall linear infinite}
-@keyframes xmasFall{0%{transform:translateY(0) translateX(0);opacity:0}10%{opacity:.8}90%{opacity:.5}100%{transform:translateY(112%) translateX(var(--xd));opacity:0}}
-@media (prefers-reduced-motion:reduce){.xmas-flake{display:none}}
-.kit{position:relative;border-top:3px solid var(--gold)}
-.kit::after{content:"";position:absolute;top:-10px;left:50%;width:16px;height:16px;transform:translateX(-50%);border-radius:50%;background:var(--pine);box-shadow:inset -2px -2px 3px rgba(0,0,0,.25),inset 2px 2px 3px rgba(255,255,255,.3),0 2px 4px rgba(0,0,0,.25)}
-.kit:nth-child(2)::after{background:var(--wine)}
-.kit:nth-child(3)::after{background:var(--gold)}
-.kit:nth-child(4)::after{background:var(--pine2)}
-.xmas-divider{position:relative;height:52px;overflow:visible;background:var(--paper)}
-.xmas-divider svg{position:absolute;top:0;left:0;width:100%;height:66px}
-.xmas-bowrow{display:flex;align-items:center;justify-content:center;gap:16px;margin:4px 0 clamp(26px,3.6vw,40px)}
-.xmas-bowrow svg{width:34px;height:auto}
-.xmas-bowrow .xb-line{flex:1;max-width:120px;height:1px;background:var(--hair)}
+#xmasBar{position:fixed;top:0;left:0;right:0;z-index:60;background:var(--ink);color:var(--paper);border-bottom:1px solid rgba(194,160,92,.5)}
+#xmasBar .xb-row{display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;padding:12px var(--pad) 11px;text-align:center;max-width:1320px;margin:0 auto}
+#xmasBar .xb-msg{font-family:var(--serif);font-style:italic;font-size:clamp(.82rem,1.3vw,.95rem);letter-spacing:.01em;opacity:.95}
+#xmasBar .xb-msg strong{font-style:normal;font-weight:600}
+#xmasBar .xb-link{flex:none;font-family:var(--sans);font-size:.65rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;color:var(--paper);border-bottom:1px solid rgba(243,233,221,.5);padding-bottom:2px;white-space:nowrap}
+body.xmas-active{padding-top:var(--xmas-bar-h,42px)}
+body.xmas-active .site-header{top:var(--xmas-bar-h,42px)}
 </style>
 </head>
 <body>
@@ -1206,87 +1188,13 @@ const GFORM_ACTION = "https://docs.google.com/forms/d/e/1FAIpQLSemZUwLhP53R-F3kP
 <script id="xmasScript">
 (function(){
   if(document.getElementById('xmasBar')) return;
-  function hollyIcon(){
-    return '<svg viewBox="0 0 28 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">'+
-      '<path d="M4 10 Q2 4 8 4 Q10 0 14 4 Q18 0 20 4 Q26 4 24 10 Q26 16 20 16 Q18 20 14 16 Q10 20 8 16 Q2 16 4 10 Z" fill="var(--pine)"/>'+
-      '<circle cx="11" cy="11" r="2.3" fill="var(--wine)"/><circle cx="15" cy="13" r="2.3" fill="var(--wine)"/><circle cx="17" cy="9" r="2.3" fill="var(--wine)"/>'+
-      '</svg>';
-  }
-  function wreathSVG(){
-    var cx=66, cy=64, rOut=50, rIn=28, n=30, leaves='';
-    for(var i=0;i<n;i++){
-      var a=(i/n)*Math.PI*2;
-      var rr = rIn + (rOut-rIn)*(0.55+0.45*Math.sin(i*2.3));
-      var x=cx+Math.cos(a)*rr, y=cy+Math.sin(a)*rr;
-      var rot=(a*180/Math.PI)+90;
-      var shade = i%3===0?'#24402f':(i%3===1?'#355a40':'#44704f');
-      leaves += '<ellipse cx="'+x+'" cy="'+y+'" rx="7" ry="14" fill="'+shade+'" transform="rotate('+rot+' '+x+' '+y+')"/>';
-    }
-    var cones='';
-    [20,140,260].forEach(function(deg){ var a=deg*Math.PI/180; var x=cx+Math.cos(a)*((rOut+rIn)/2), y=cy+Math.sin(a)*((rOut+rIn)/2);
-      cones += '<ellipse cx="'+x+'" cy="'+y+'" rx="5" ry="7" fill="#7a5a3a"/><ellipse cx="'+x+'" cy="'+(y-1)+'" rx="3" ry="4.5" fill="#8f6b47"/>'; });
-    var berries='';
-    [65,185,305].forEach(function(deg){ var a=deg*Math.PI/180; var bx=cx+Math.cos(a)*((rOut+rIn)/2), by=cy+Math.sin(a)*((rOut+rIn)/2);
-      berries += '<circle cx="'+(bx-4)+'" cy="'+(by-2)+'" r="3.4" fill="#8a1f2a"/><circle cx="'+(bx+3)+'" cy="'+by+'" r="3.4" fill="#9c2b2b"/><circle cx="'+bx+'" cy="'+(by+4)+'" r="3.4" fill="#8a1f2a"/>'; });
-    var by0 = cy+rOut+2;
-    var bow = '<g transform="translate('+cx+','+by0+')">'+
-      '<path d="M0 2 L-26 -14 Q-30 0 -22 16 Z" fill="var(--wine)"/>'+
-      '<path d="M0 2 L26 -14 Q30 0 22 16 Z" fill="var(--wine2)"/>'+
-      '<path d="M-6 4 L-10 42 L-2 32 Z" fill="var(--wine)"/>'+
-      '<path d="M6 4 L10 42 L2 32 Z" fill="var(--wine2)"/>'+
-      '<rect x="-9" y="-6" width="18" height="14" rx="3" fill="var(--wine2)" stroke="var(--gold)" stroke-width="1.2"/>'+
-      '</g>';
-    return '<svg viewBox="0 0 132 174" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">'+leaves+cones+berries+bow+'</svg>';
-  }
-  function treeSVG(){
-    var tiers=[{y:100,w:78},{y:76,w:60},{y:52,w:44},{y:30,w:28}];
-    var g='';
-    tiers.forEach(function(t,i){ var x1=44-t.w/2, x2=44+t.w/2, yTop=t.y-26; g += '<path d="M44 '+yTop+' L'+x2+' '+t.y+' L'+x1+' '+t.y+' Z" fill="'+(i%2===0?'var(--pine)':'var(--pine2)')+'"/>'; });
-    var lights='';
-    tiers.forEach(function(t){ var x1=44-t.w/2+5, x2=44+t.w/2-5, cnt=4; for(var i=0;i<cnt;i++){ var x=x1+(x2-x1)*(i/(cnt-1)); lights += '<circle cx="'+x+'" cy="'+(t.y-4)+'" r="2.1" fill="var(--gold)"/>'; } });
-    var trunk = '<rect x="39" y="100" width="10" height="16" rx="1.5" fill="#5c4028"/>';
-    var star = '<path d="M44 2 L47.3 11 L57 11 L49.2 17 L52 26.5 L44 20.8 L36 26.5 L38.8 17 L31 11 L40.7 11 Z" fill="var(--gold)"/>';
-    return '<svg viewBox="0 0 88 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">'+g+lights+trunk+star+'</svg>';
-  }
-  function bowSVG(){
-    return '<svg viewBox="0 0 44 30" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">'+
-      '<path d="M22 15 L3 3 L3 27 Z" fill="var(--wine)"/><path d="M22 15 L41 3 L41 27 Z" fill="var(--wine2)"/>'+
-      '<rect x="17" y="10" width="10" height="10" rx="2.4" fill="var(--wine2)" stroke="var(--gold)" stroke-width="1"/></svg>';
-  }
-  function swagSVG(colors){
-    var w=1200, segs=6, segW=w/segs, path='M0,10';
-    for(var i=0;i<segs;i++){ var x1=i*segW+segW*0.5, y1=36, x2=(i+1)*segW, y2=10; path += ' Q'+x1+','+y1+' '+x2+','+y2; }
-    var baubles='';
-    for(var i=0;i<segs;i++){ var cx=i*segW+segW*0.5, cy=32, c=colors[i%colors.length];
-      baubles += '<circle cx="'+cx+'" cy="'+cy+'" r="7" fill="'+c+'"/><circle cx="'+(cx-2.4)+'" cy="'+(cy-2.4)+'" r="2" fill="rgba(255,255,255,.55)"/>'; }
-    return '<svg viewBox="0 0 '+w+' 56" preserveAspectRatio="none" aria-hidden="true"><path d="'+path+'" stroke="var(--gold)" stroke-width="1.6" fill="none" opacity=".7"/>'+baubles+'</svg>';
-  }
-
   var bar = document.createElement('div');
-  bar.id='xmasBar';
-  bar.innerHTML = '<div class="xb-row"><span class="xb-holly">'+hollyIcon()+'</span><span class="xb-msg">Garanta a sua <em>Ceia de Natal</em> &mdash; encomendas abertas</span><a class="btn btn-paper" href="#orcamento">Pedir orçamento</a></div>';
+  bar.id = 'xmasBar';
+  bar.innerHTML = '<div class="xb-row"><span class="xb-msg">Já estamos a aceitar encomendas para a <strong>Ceia de Natal</strong></span><a class="xb-link" href="#orcamento">Pedir orçamento</a></div>';
   document.body.insertBefore(bar, document.body.firstChild);
   document.body.classList.add('xmas-active');
   function syncBarHeight(){ document.documentElement.style.setProperty('--xmas-bar-h', bar.offsetHeight+'px'); }
   syncBarHeight(); window.addEventListener('resize', syncBarHeight); setTimeout(syncBarHeight,400);
-
-  var hero = document.querySelector('.hero');
-  if(hero){
-    var wreath=document.createElement('div'); wreath.className='xmas-wreath'; wreath.innerHTML=wreathSVG(); hero.appendChild(wreath);
-    var tree=document.createElement('div'); tree.className='xmas-tree'; tree.innerHTML=treeSVG(); hero.appendChild(tree);
-    var snow=document.createElement('div'); snow.className='xmas-snow'; var flakes='';
-    for(var i=0;i<22;i++){ var size=(Math.random()*2.4+1.4).toFixed(1), left=(Math.random()*100).toFixed(1), drift=(Math.random()*34-17).toFixed(0), dur=(Math.random()*9+8).toFixed(1), delay=(Math.random()*-18).toFixed(1);
-      flakes += '<span class="xmas-flake" style="width:'+size+'px;height:'+size+'px;left:'+left+'%;--xd:'+drift+'px;animation-duration:'+dur+'s;animation-delay:'+delay+'s"></span>'; }
-    snow.innerHTML=flakes; hero.appendChild(snow);
-  }
-
-  function insertDivider(sel, colors){ var t=document.querySelector(sel); if(!t||!t.parentNode) return; var d=document.createElement('div'); d.className='xmas-divider'; d.innerHTML=swagSVG(colors); t.parentNode.insertBefore(d,t); }
-  insertDivider('.occasions', ['var(--pine)','var(--gold)','var(--wine)']); insertDivider('.table', ['var(--pine)','var(--gold)','var(--wine)']); insertDivider('.quote', ['var(--pine)','var(--gold)','var(--wine)']);
-  var foot=document.querySelector('.foot');
-  if(foot){ var fdiv=document.createElement('div'); fdiv.className='xmas-divider'; fdiv.innerHTML=swagSVG(['var(--wine)','var(--pine)','var(--gold)']); foot.insertBefore(fdiv, foot.firstChild); }
-
-  var menuHead=document.querySelector('.menu-head');
-  if(menuHead && menuHead.parentNode){ var bowRow=document.createElement('div'); bowRow.className='xmas-bowrow'; bowRow.innerHTML='<span class="xb-line"></span>'+bowSVG()+'<span class="xb-line"></span>'; menuHead.parentNode.insertBefore(bowRow, menuHead); }
 
   function patchVideo(v){
     if(!v || v.__xmasPatched) return; v.__xmasPatched = true;
