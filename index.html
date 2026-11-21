@@ -438,6 +438,43 @@ h1,h2,h3{font-family:var(--display);font-weight:400;letter-spacing:-.01em}
 
 .kit,.kit-reveal,.grp-toggle,.btn,.g-nav,.kit-modal-close,.tlink{touch-action:manipulation;-webkit-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent}
 </style>
+<style id="xmasStyle">
+:root{--xgreen:#1f4d34;--xgreen-lt:#2f6b48;--xred:#9c2b2b;--xred-lt:#c6453f;--xgold:#c9a24b}
+#xmasBar{position:fixed;top:0;left:0;right:0;z-index:60;background:linear-gradient(100deg,var(--xred) 0%,var(--xred) 46%,var(--xgreen) 54%,var(--xgreen) 100%);color:#fff;font-family:var(--sans)}
+#xmasBar .xb-row{display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;padding:10px var(--pad) 8px;text-align:center}
+#xmasBar .xb-msg{display:inline-flex;align-items:center;gap:7px;font-size:.7rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase}
+#xmasBar .xb-msg svg{width:15px;height:15px;flex:none}
+#xmasBar .xb-cta{flex:none;display:inline-flex;align-items:center;gap:6px;background:#fff;color:var(--xred);padding:.5em 1.1em;border-radius:999px;font-size:.6rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;transition:transform .25s ease}
+#xmasBar .xb-cta:hover{transform:translateY(-1px)}
+#xmasBar .xb-lights{display:block;width:100%;height:12px}
+.xb-bulb{animation:xbTwinkle 1.8s ease-in-out infinite}
+.xb-bulb:nth-child(3n+1){animation-delay:.3s}
+.xb-bulb:nth-child(3n+2){animation-delay:.7s}
+@keyframes xbTwinkle{0%,100%{opacity:1}50%{opacity:.35}}
+body.xmas-active{padding-top:var(--xmas-bar-h,60px)}
+body.xmas-active .site-header{top:var(--xmas-bar-h,60px)}
+@media (prefers-reduced-motion:reduce){.xb-bulb{animation:none}}
+.xmas-wreath{position:absolute;top:clamp(80px,14vh,145px);right:var(--pad);z-index:3;width:clamp(64px,8.5vw,116px);height:auto;filter:drop-shadow(0 10px 20px rgba(0,0,0,.4))}
+.xmas-tree{position:absolute;left:var(--pad);top:clamp(80px,14vh,145px);z-index:3;width:clamp(48px,7vw,100px);height:auto;filter:drop-shadow(0 8px 16px rgba(0,0,0,.45))}
+.xmas-snow{position:absolute;inset:0;z-index:2;overflow:hidden;pointer-events:none}
+.xmas-flake{position:absolute;top:-4%;border-radius:50%;background:#fff;opacity:.92;animation:xmasFall linear infinite;box-shadow:0 0 3px rgba(255,255,255,.7)}
+@keyframes xmasFall{0%{transform:translateY(0) translateX(0);opacity:0}10%{opacity:.9}90%{opacity:.55}100%{transform:translateY(112%) translateX(var(--xd));opacity:0}}
+@media (prefers-reduced-motion:reduce){.xmas-flake{display:none}}
+.kit{position:relative;border-top:5px solid transparent;border-image:repeating-linear-gradient(45deg,var(--xred) 0 8px,#fff 8px 16px) 1}
+.kit::after{content:"";position:absolute;top:-10px;left:50%;transform:translateX(-50%);width:15px;height:15px;border-radius:50%;background:var(--xgreen);border:2px solid rgba(255,255,255,.85);box-shadow:0 2px 6px rgba(0,0,0,.25)}
+.kit:nth-child(2)::after{background:var(--xred)}
+.kit:nth-child(3)::after{background:var(--xgold)}
+.kit:nth-child(4)::after{background:var(--xgreen)}
+.xmas-divider{position:relative;height:36px;overflow:visible;background:var(--ink)}
+.xmas-divider svg{position:absolute;top:-4px;left:0;width:100%;height:48px}
+.xmas-divider .xd-bulb{animation:xbTwinkle 2.3s ease-in-out infinite}
+.xmas-bowrow{display:flex;align-items:center;justify-content:center;gap:16px;margin:4px 0 clamp(24px,4vw,40px)}
+.xmas-bowrow svg{width:28px;height:auto}
+.xmas-bowrow .xb-line{flex:1;max-width:110px;height:1px;background:rgba(113,77,54,.3)}
+.xmas-hat{position:absolute;top:-6px;left:-4px;width:23px;z-index:2;transform:rotate(-20deg);pointer-events:none}
+.brand{position:relative}
+.foot .xmas-divider{margin-bottom:14px}
+</style>
 </head>
 <body>
 
@@ -1174,6 +1211,70 @@ const GFORM_ACTION = "https://docs.google.com/forms/d/e/1FAIpQLSemZUwLhP53R-F3kP
     el.classList.remove('show');
     try{ localStorage.setItem(KEY, '1'); }catch(e){}
   });
+})();
+</script>
+<script id="xmasScript">
+(function(){
+  if(document.getElementById('xmasBar')) return;
+  function garlandSVG(h, colors){
+    var w=1200, segs=22, pts=[], bulbs='';
+    for(var i=0;i<=segs;i++){ var x=i*(w/segs); var y=(i%2===0)?6:26; pts.push((i===0?'M':'L')+x+','+y); }
+    var wire = '<path d="'+pts.join(' ')+'" stroke="rgba(255,255,255,.35)" stroke-width="2" fill="none"/>';
+    for(var i=0;i<=segs;i++){ var x=i*(w/segs); var y=((i%2===0)?6:26)+6; var c=colors[i%colors.length]; bulbs += '<circle class="xb-bulb xd-bulb" cx="'+x+'" cy="'+y+'" r="5.5" fill="'+c+'"/>'; }
+    return '<svg viewBox="0 0 '+w+' '+(h||40)+'" preserveAspectRatio="none" aria-hidden="true">'+wire+bulbs+'</svg>';
+  }
+  function wreathSVG(){
+    var leaves='', n=22, cx=60, cy=60, rOuter=46, rInner=30;
+    for(var i=0;i<n;i++){ var a=(i/n)*Math.PI*2; var x=cx+Math.cos(a)*((rOuter+rInner)/2); var y=cy+Math.sin(a)*((rOuter+rInner)/2); var rot=(a*180/Math.PI)+90; var col=(i%4===0)?'#2f6b48':(i%4===2?'#1f4d34':'#275a3e'); leaves += '<ellipse cx="'+x+'" cy="'+y+'" rx="9" ry="16" fill="'+col+'" transform="rotate('+rot+' '+x+' '+y+')"/>'; }
+    var berries='';
+    for(var j=0;j<8;j++){ var a2=(j/8)*Math.PI*2+.3; var x2=cx+Math.cos(a2)*rOuter*0.92; var y2=cy+Math.sin(a2)*rOuter*0.92; berries += '<circle cx="'+x2+'" cy="'+y2+'" r="3.4" fill="#b4212b"/>'; }
+    var bow = '<g transform="translate('+cx+','+(cy+rOuter+2)+')"><path d="M0 0 L-22 -14 L-22 14 Z" fill="#9c2b2b"/><path d="M0 0 L22 -14 L22 14 Z" fill="#b4312f"/><circle cx="0" cy="0" r="6.5" fill="#7d1f1f"/></g>';
+    return '<svg viewBox="0 0 120 150" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">'+leaves+berries+bow+'</svg>';
+  }
+  function treeSVG(){
+    var tiers=[{y:96,w:70},{y:72,w:56},{y:48,w:42},{y:26,w:26}];
+    var g='';
+    tiers.forEach(function(t,i){ var x1=50-t.w/2, x2=50+t.w/2, yTop=t.y-26; g += '<path d="M50 '+yTop+' L'+x2+' '+t.y+' L'+x1+' '+t.y+' Z" fill="'+(i%2===0?'#1f4d34':'#2f6b48')+'"/>'; });
+    var ornaments = '<circle cx="42" cy="88" r="3" fill="#b4212b"/><circle cx="58" cy="70" r="3" fill="#c9a24b"/><circle cx="46" cy="58" r="2.6" fill="#b4212b"/><circle cx="54" cy="40" r="2.6" fill="#c9a24b"/>';
+    var trunk = '<rect x="45" y="96" width="10" height="16" fill="#6b4a33"/>';
+    var star = '<path d="M50 2 L53 10 L62 10 L55 15 L58 23 L50 18 L42 23 L45 15 L38 10 L47 10 Z" fill="#c9a24b"/>';
+    return '<svg viewBox="0 0 100 115" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">'+trunk+g+ornaments+star+'</svg>';
+  }
+  function bowSVG(color){ color=color||'#9c2b2b'; return '<svg viewBox="0 0 48 30" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M24 15 L2 2 L2 28 Z" fill="'+color+'"/><path d="M24 15 L46 2 L46 28 Z" fill="'+color+'" opacity=".85"/><circle cx="24" cy="15" r="6" fill="'+color+'" stroke="#fff" stroke-width="1"/></svg>'; }
+  function ornamentIcon(){ return '<svg viewBox="0 0 24 24"><path d="M12 2v4" stroke="#fff" stroke-width="2" stroke-linecap="round" fill="none"/><circle cx="12" cy="14" r="7" fill="#fff"/><circle cx="12" cy="14" r="7" fill="none" stroke="#9c2b2b" stroke-width="1.4"/></svg>'; }
+
+  var bar = document.createElement('div');
+  bar.id = 'xmasBar';
+  bar.innerHTML = '<div class="xb-row"><span class="xb-msg">'+ornamentIcon()+'Garanta a sua Ceia de Natal &mdash; encomendas abertas</span><a class="xb-cta" href="#orcamento">Pedir orçamento</a></div><span class="xb-lights">'+garlandSVG(16,['#f3e9dd','#c9a24b','#fff'])+'</span>';
+  document.body.insertBefore(bar, document.body.firstChild);
+  document.body.classList.add('xmas-active');
+  function syncBarHeight(){ document.documentElement.style.setProperty('--xmas-bar-h', bar.offsetHeight+'px'); }
+  syncBarHeight();
+  window.addEventListener('resize', syncBarHeight);
+  setTimeout(syncBarHeight, 400);
+
+  var hero = document.querySelector('.hero');
+  if(hero){
+    var wreath = document.createElement('div'); wreath.className='xmas-wreath'; wreath.innerHTML=wreathSVG(); hero.appendChild(wreath);
+    var tree = document.createElement('div'); tree.className='xmas-tree'; tree.innerHTML=treeSVG(); hero.appendChild(tree);
+    var snow = document.createElement('div'); snow.className='xmas-snow'; var flakes='';
+    for(var i=0;i<26;i++){ var size=(Math.random()*3+1.6).toFixed(1), left=(Math.random()*100).toFixed(1), drift=(Math.random()*40-20).toFixed(0), dur=(Math.random()*9+8).toFixed(1), delay=(Math.random()*-18).toFixed(1);
+      flakes += '<span class="xmas-flake" style="width:'+size+'px;height:'+size+'px;left:'+left+'%;--xd:'+drift+'px;animation-duration:'+dur+'s;animation-delay:'+delay+'s"></span>'; }
+    snow.innerHTML = flakes; hero.appendChild(snow);
+  }
+
+  var brand = document.querySelector('.brand');
+  if(brand){ var hat = document.createElement('div'); hat.className='xmas-hat'; hat.innerHTML='<svg viewBox="0 0 40 34" xmlns="http://www.w3.org/2000/svg"><path d="M2 32 C2 18 14 2 36 2 C30 10 26 20 30 30 Z" fill="#b4212b"/><circle cx="34" cy="4" r="4.5" fill="#fff"/><rect x="0" y="27" width="34" height="7" rx="3.5" fill="#fff"/></svg>'; brand.appendChild(hat); }
+
+  function insertDivider(sel, colors){ var t=document.querySelector(sel); if(!t||!t.parentNode) return; var d=document.createElement('div'); d.className='xmas-divider'; d.innerHTML=garlandSVG(48,colors); t.parentNode.insertBefore(d,t); }
+  insertDivider('.occasions', ['#9c2b2b','#c9a24b','#fff']);
+  insertDivider('.table', ['#2f6b48','#c9a24b','#fff']);
+  insertDivider('.quote', ['#9c2b2b','#1f4d34','#c9a24b']);
+  var foot = document.querySelector('.foot');
+  if(foot){ var fdiv=document.createElement('div'); fdiv.className='xmas-divider'; fdiv.innerHTML=garlandSVG(48,['#9c2b2b','#1f4d34','#fff']); foot.insertBefore(fdiv, foot.firstChild); }
+
+  var menuHead = document.querySelector('.menu-head');
+  if(menuHead && menuHead.parentNode){ var bowRow=document.createElement('div'); bowRow.className='xmas-bowrow'; bowRow.innerHTML = '<span class="xb-line"></span>'+bowSVG('#9c2b2b')+'<span class="xb-line"></span>'+bowSVG('#1f4d34')+'<span class="xb-line"></span>'; menuHead.parentNode.insertBefore(bowRow, menuHead); }
 })();
 </script>
 </body>
